@@ -1,9 +1,14 @@
 #include "Image.h"
 
 Image::Image(const string file_name) {
-	Mat  img2 = imread(file_name,IMREAD_GRAYSCALE);
+	Mat  load_image = imread(file_name,IMREAD_GRAYSCALE);
+	if (!load_image.data)
+	{
+		throw ErrorObject(LOAD_FAILED_NUM, LOAD_FAILED, LINK1);
+
+	}
 	Mat new_image;
-	img2.convertTo(new_image, CV_32FC1);
+	load_image.convertTo(new_image, CV_32FC1);
 	MyMatrix gray(new_image.rows, new_image.cols);
 	for (int i = 0; i < new_image.rows; i++) {
 

@@ -52,7 +52,7 @@ public:
 	
 
 	double*& operator [](const int& index) const
-	{
+	{	
 		return  this->_matrix[index];
 	}
 

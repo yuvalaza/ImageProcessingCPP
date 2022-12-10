@@ -10,6 +10,9 @@ using namespace std;
 #define INVALID_MUL_NUM 2
 #define INVALID_INMUL " For elementWise multiplication, both matrices have to be with the same size"
 #define INVALID_INMUL_NUM 3
+#define LOAD_FAILED "image loading failed"
+#define LOAD_FAILED_NUM 4
+
 
 
 
