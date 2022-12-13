@@ -11,13 +11,15 @@ class Image
 private:
 	MyMatrix _gmat;
 	MyMatrix _histogram;
+	string _path;
 
 	void setHist();
 public:
 	Image(const string file_name);
 	MyMatrix getHist()const { return this->_histogram; }
 	MyMatrix getGmat()const { return this->_gmat; }
-	
+	string getPath()const { return this->_path; }
+	void display()const;
 
 
 };

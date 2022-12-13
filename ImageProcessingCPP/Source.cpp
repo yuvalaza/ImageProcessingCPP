@@ -4,7 +4,7 @@
 void main() 
 {
 	Image imag("image2.png");
-	cout << imag.getHist() << endl;
+	imag.display();
 
 	int play = 1;
 	int num;

@@ -115,6 +115,7 @@ MyMatrix& MyMatrix::operator=(const MyMatrix& other) {
 			}
 
 		}
+		
 	}
 	return *this;
 }
