@@ -1,10 +1,14 @@
 #include "MyMatrix.h"
 #include "Image.h"
 
+
+
 void main() 
 {
-	Image imag("image2.png");
-	imag.display();
+
+	Image imag("image3.jpeg");
+	imag.showHist();
+
 
 	int play = 1;
 	int num;

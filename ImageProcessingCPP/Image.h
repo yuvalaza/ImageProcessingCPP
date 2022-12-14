@@ -3,6 +3,7 @@
 #include <opencv2/imgproc/imgproc.hpp>
 #include <opencv2/objdetect/objdetect.hpp>
 #include <opencv2/highgui/highgui.hpp>
+#include<algorithm>
 using namespace cv;
 
 
@@ -20,6 +21,8 @@ public:
 	MyMatrix getGmat()const { return this->_gmat; }
 	string getPath()const { return this->_path; }
 	void display()const;
+	void showHist()const;
+	void drawHist(const vector<int>& data, Mat3b& dst, int binSize = 3, int height = 0)const;
 
 
 };

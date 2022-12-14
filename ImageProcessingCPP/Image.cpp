@@ -14,8 +14,6 @@ Image::Image(const string path) {
 
 		for (int j = 0; j < new_image.cols; j++) {
 			gray[i][j] = new_image.at<double>(i, j);
-		
-
 
 		}
 	}
@@ -55,3 +53,43 @@ void Image::display()const{
 	waitKey(0); 
 	destroyWindow(windowName);
 }
+void Image::showHist()const {
+	String windowName;
+	float temp;
+	vector<int>hist(256);
+	for (int i = 0; i < this->_histogram.getCols(); i++) {
+		hist[i] = this->_histogram[0][i];
+		cout << this->_histogram[0][i];
+		cout <<  " index: " << i << endl;
+	}
+
+	Mat3b image;
+	drawHist(hist, image);
+	imshow("Histogram", image);
+	waitKey(0);
+	destroyWindow(windowName);
+}
+void Image:: drawHist(const vector<int>& data, Mat3b& dst, int binSize , int height )const
+{
+	int max_value = *max_element(data.begin(), data.end());
+	int rows = 0;
+	int cols = 0;
+	if (height == 0) {
+		rows = max_value + 10;
+	}
+	else {
+		rows = max(max_value + 10, height);
+	}
+
+	cols = data.size() * binSize;
+
+	dst = Mat3b(rows, cols, Vec3b(0, 0, 0));
+
+	for (int i = 0; i < data.size(); ++i)
+	{
+		int h = rows - data[i];
+		rectangle(dst, Point(i * binSize, h), Point((i + 1) * binSize - 1, rows), (i % 2) ? Scalar(0, 100, 255) : Scalar(0, 0, 255),cv::FILLED);
+	}
+
+}
+
