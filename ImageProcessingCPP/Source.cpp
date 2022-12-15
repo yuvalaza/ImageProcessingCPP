@@ -6,8 +6,17 @@
 void main() 
 {
 
-	Image imag("image3.jpeg");
+	Image imag("image2.png");
+	Image imag2("image2.png");
+
+	
+	imag=imag.ContrastStretch();
+	imag2.showHist();
 	imag.showHist();
+	
+	imag2.display();
+	imag.display();
+
 
 
 	int play = 1;
