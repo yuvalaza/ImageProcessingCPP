@@ -10,12 +10,20 @@ void main()
 	Image imag2("image2.png");
 
 	
-	imag=imag.ContrastStretch();
-	imag2.showHist();
+	/*imag2=imag.ContrastStretch();
 	imag.showHist();
+	imag2.showHist();
 	
-	imag2.display();
 	imag.display();
+	imag2.display();*/
+
+	imag2 = imag.equalize();
+	imag.showHist();
+	imag2.showHist();
+
+	imag.display();
+	imag2.display();
+	
 
 
 

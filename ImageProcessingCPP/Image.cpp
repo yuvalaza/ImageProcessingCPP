@@ -23,25 +23,32 @@ Image::Image(const string path) {
 }
 Image:: Image(int rows, int cols, string path) {
 	this->setGmat(rows, cols);
-	this->setHist(1, 256);
 	this->setPath(path);
+	this->setHist();
 }
 
 void Image::setGmat(int rows,int cols) {
 	this->_gmat.setMatrix(rows, cols);
 }
 
-void Image::setHist(int rows, int cols) {
-	this->_histogram.setMatrix(rows, cols);
+void Image::setHist() {
+	if (this->_path == "None") {
+		this->_histogram.setMatrix(1, 256);
+	}
+	this->_histogram = this->calHist();
 }
 
-MyMatrix Image::calHist() {
-MyMatrix res_hist(1, 256);
+MyMatrix Image::calHist() const{
 
+MyMatrix res_hist(1, 256);
 int temp;
 for (int i = 0; i < this->_gmat.getRows(); i++) {
 	for (int j = 0; j < this->_gmat.getCols(); j++) {
-		temp = this->_gmat[i][j];
+		temp = int(this->_gmat[i][j]);
+		if (temp < 0) {
+			cout << this->_gmat[i][j] << endl;
+		}
+		
 		res_hist[0][temp] += 1;
 	}
 }
@@ -121,7 +128,7 @@ int Image::getHistPercentile(const int p)const {
 	}
 }
 
-Image Image::ContrastStretch() {
+Image Image::ContrastStretch()const {
 	int rows = this->getGmat().getRows();
 	int cols = this->getGmat().getCols();
 	Image contrast(rows, cols);
@@ -135,13 +142,12 @@ Image Image::ContrastStretch() {
 
 	for (int i = 0; i < rows; i++) {
 		for (int j = 0; j < cols; j++) {
-			if ((this->_gmat[i][j] - min) <= 0)
-			{
-				this->_gmat[i][j]= 0;
-			}
 			contrast._gmat[i][j] = (((this->_gmat[i][j]) - min) * (factor)) + low;
 			if (contrast._gmat[i][j] > 255) {
 				contrast._gmat[i][j] = 255;
+			}
+			if (contrast._gmat[i][j] <=0) {
+				contrast._gmat[i][j] = 0;
 			}
 		}
 		
@@ -149,5 +155,29 @@ Image Image::ContrastStretch() {
 	contrast._histogram = contrast.calHist();
 	contrast.setPath(this->getPath() + "-ContrastStretch");
 	return contrast;
+
+}
+
+Image Image::equalize()const {
+	int rows = this->getGmat().getRows();
+	int cols = this->getGmat().getCols();
+	int max = cols - 1;
+	Image equal(rows, cols);
+	MyMatrix pdf = (this->getHist()) * (1 / double(rows * cols));
+	MyMatrix cdf(1, cols);
+	cdf[0][0] = pdf[0][0];
+	for (int i = 1; i < cols; i++) {
+		cdf[0][i] = cdf[0][i - 1] + pdf[0][i];
+	}
+
+	for (int i = 0; i < rows; i++) {
+		for (int j = 0; j < cols; j++) {
+			equal._gmat[i][j] = (cdf[0][int(this->_gmat[i][j])] )* max;
+		}
+	}
+	equal._histogram = equal.calHist();
+	equal.setPath(this->getPath() + "-equalized");
+	return equal;
+
 
 }
