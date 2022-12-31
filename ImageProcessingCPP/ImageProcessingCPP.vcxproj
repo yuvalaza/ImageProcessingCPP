@@ -160,6 +160,7 @@
     <Image Include="image2.png" />
     <Image Include="image3.jpeg" />
     <Image Include="image4.bmp" />
+    <Image Include="saltPe_noise.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

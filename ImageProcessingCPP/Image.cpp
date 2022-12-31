@@ -45,10 +45,6 @@ int temp;
 for (int i = 0; i < this->_gmat.getRows(); i++) {
 	for (int j = 0; j < this->_gmat.getCols(); j++) {
 		temp = int(this->_gmat[i][j]);
-		if (temp < 0) {
-			cout << this->_gmat[i][j] << endl;
-		}
-		
 		res_hist[0][temp] += 1;
 	}
 }
@@ -161,7 +157,7 @@ Image Image::ContrastStretch()const {
 Image Image::equalize()const {
 	int rows = this->getGmat().getRows();
 	int cols = this->getGmat().getCols();
-	int max = cols - 1;
+	int max = (this->getHist().getCols()) - 1;
 	Image equal(rows, cols);
 	MyMatrix pdf = (this->getHist()) * (1 / double(rows * cols));
 	MyMatrix cdf(1, cols);
@@ -175,9 +171,59 @@ Image Image::equalize()const {
 			equal._gmat[i][j] = (cdf[0][int(this->_gmat[i][j])] )* max;
 		}
 	}
+	cout << (cdf[0][int(this->_gmat[0][408])]) << endl;
+	cout << equal._gmat[0][408] << endl;
 	equal._histogram = equal.calHist();
 	equal.setPath(this->getPath() + "-equalized");
 	return equal;
 
 
 }
+
+Image Image::median(const int size)const {
+	int factor = size / 2;
+	int median;
+	int index = 0;
+	int rows = this->getGmat().getRows();
+	int cols = this->getGmat().getCols();
+	Image med(rows, cols);
+	int arrSize = pow(size, 2);
+	MyMatrix temp(1,arrSize);
+
+	for (int i = 0; i < rows; i++) {
+		for (int j = 0; j < cols; j++) {
+
+			for (int k = i - factor; k <= i + factor; k++) {
+				if (k >= 0 && k<rows)
+				{
+					for (int m = j - factor; m <= j + factor; m++) {
+						if (m >= 0 && m<cols)
+						{
+							temp[0][index] = this->_gmat[k][m];
+							index++;
+						}
+
+					}
+				}
+				
+			}
+			index = 0;
+			//cout << temp << endl;
+			temp.sort();
+			//cout << temp << endl;
+			if (size % 2 == 0) {
+				median = (temp[0][arrSize / 2] + temp[0][(arrSize / 2) + 1]) / 2;
+				
+			}
+			else {
+				median = temp[0][(arrSize - 1) / 2];
+				//cout << median << endl;
+			}
+			med._gmat[i][j] = median;
+
+		}
+		
+	}
+	return med;
+}
+

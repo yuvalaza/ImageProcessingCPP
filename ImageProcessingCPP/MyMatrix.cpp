@@ -90,8 +90,60 @@ MyMatrix MyMatrix::mul(const MyMatrix& other)const {
 	
 }
 
+void MyMatrix::sort() {
+	for (int i = 0; i < this->getRows(); i++) {
+		mergeSort(this->_matrix[i],0,(this->getCols()-1));
+	}
 
+}
+void MyMatrix:: mergeSort(double* arr,int first, int last) {
+	if (first >= last) {
+		return;
+	}
+	int mid = first + ((last - first) / 2);
+	mergeSort(arr, first, mid);
+	mergeSort(arr, mid + 1, last);
+	merge(arr, first, mid, last);
+}
+void MyMatrix::merge(double* arr, int const left, int const mid, int const right) {
+	
+	double* larr = new double[mid - left + 1];
+	double* rarr = new double[right - mid];
+	int larr_index = 0;
+	int rarr_index = 0;
+	int marr_index = left;
 
+	for (int i = 0; i < mid - left + 1; i++) {
+		larr[i] = arr[left+i];
+	}
+	for (int i = 0; i <right-mid; i++) {
+		rarr[i] = arr[mid + i+1];
+	}
+	while ((larr_index < mid - left + 1) && (rarr_index < right - mid)) {
+		if (larr[larr_index] <= rarr[rarr_index]) {
+			arr[marr_index] = larr[larr_index];
+			larr_index++;
+		}
+		else {
+			arr[marr_index] = rarr[rarr_index];
+			rarr_index++;
+		}
+		marr_index++;
+	}
+	
+	while (larr_index < mid-left+1) {
+		arr[marr_index] = larr[larr_index];
+		marr_index++;
+		larr_index++;
+	}
+	while (rarr_index < right-mid) {
+		arr[marr_index] = rarr[rarr_index];
+		marr_index++;
+		rarr_index++;
+	}
+	delete[]larr;
+	delete[]rarr;
+}
 
 
 

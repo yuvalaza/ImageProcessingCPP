@@ -31,5 +31,6 @@ public:
 	void drawHist(const vector<double>& data, Mat3b& dst, int binSize = 3, int height = 0)const;
 	Image ContrastStretch()const;
 	Image equalize()const;
+	Image median(const int size = 3)const;
 
 };

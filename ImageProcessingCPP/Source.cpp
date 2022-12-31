@@ -5,26 +5,31 @@
 
 void main() 
 {
-
-	Image imag("image2.png");
-	Image imag2("image2.png");
-
 	
-	/*imag2=imag.ContrastStretch();
-	imag.showHist();
-	imag2.showHist();
-	
-	imag.display();
-	imag2.display();*/
-
-	imag2 = imag.equalize();
-	imag.showHist();
-	imag2.showHist();
-
-	imag.display();
-	imag2.display();
 	
 
+	try {
+
+		Image imag("saltPe_noise.png");
+		Image imag2(imag.getGmat().getRows(), imag.getGmat().getCols());
+		//Image imag3(imag.getGmat().getRows(), imag.getGmat().getCols());
+
+		imag2 = imag.median(3);
+		//imag3 = imag.equalize();
+
+		imag.showHist();
+		imag2.showHist();
+		//imag3.showHist();
+
+		imag.display();
+		imag2.display();
+		//imag3.display();
+	}
+	
+	catch (ErrorObject& e) {
+		e.printError();
+
+	}
 
 
 	int play = 1;

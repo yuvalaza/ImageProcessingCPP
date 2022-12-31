@@ -2,6 +2,7 @@
 #include "ErrorObject.h"
 #include<iostream>
 #include<string.h>
+#include<math.h>
 using namespace std;
 
 class MyMatrix 
@@ -10,6 +11,9 @@ private:
 	double** _matrix;
 	int _n;
 	int _m;
+
+	void mergeSort(double* arr,int first,int last);
+	void merge(double* arr, int const left, int const mid, int const right);
 
 public:
 	MyMatrix(int n,int m);
@@ -21,6 +25,7 @@ public:
 	int getCols()const { return this->_m; }
 	MyMatrix mul(const MyMatrix& other)const;
 	MyMatrix T()const;
+	void sort();
 
 
 	MyMatrix& operator=(const MyMatrix& other);
