@@ -1,8 +1,9 @@
 #pragma once
 #include "ErrorObject.h"
 #include<iostream>
-#include<string.h>
+#define _USE_MATH_DEFINES
 #include<math.h>
+
 using namespace std;
 
 class MyMatrix 
@@ -23,8 +24,11 @@ public:
 	void setMatrix(int n = 3, int m = 3);
 	int getRows()const { return this->_n; }
 	int getCols()const { return this->_m; }
+	double max()const;
+	double min()const;
 	MyMatrix mul(const MyMatrix& other)const;
 	MyMatrix T()const;
+	MyMatrix abs()const;
 	void sort();
 
 
@@ -58,6 +62,9 @@ public:
 
 	double*& operator [](const int& index) const
 	{	
+		if (this->getRows() == 1) {
+
+		}
 		return  this->_matrix[index];
 	}
 

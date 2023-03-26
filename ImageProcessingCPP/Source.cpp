@@ -1,14 +1,25 @@
-#include "MyMatrix.h"
-#include "Image.h"
 
+#include "Image.h"
 
 
 void main() 
 {
-	
+	/*Image imag3("image2.png");
+	imag3.display();
+	imag3.gausBlur(1,7).display();
+	*/
 	
 
 	try {
+		Image imag3("image2.png");
+		/*MyMatrix mat3 = setSobel(3);
+		cout << mat3 << endl;
+		*/
+		//MyMatrix mat3(3, 3,rep);
+		//cin >> mat3;
+		//Image imag4(conv(imag3.getGmat(), mat3));
+		Image imag4 = imag3.edgeDetect("sobel", 3);
+		imag4.display();
 
 		Image imag("saltPe_noise.png");
 		Image imag2(imag.getGmat().getRows(), imag.getGmat().getCols());

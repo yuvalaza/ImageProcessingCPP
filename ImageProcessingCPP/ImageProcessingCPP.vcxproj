@@ -148,10 +148,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="ErrorObject.h" />
+    <ClInclude Include="Funcs.h" />
     <ClInclude Include="Image.h" />
     <ClInclude Include="MyMatrix.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Funcs.cpp" />
     <ClCompile Include="Image.cpp" />
     <ClCompile Include="MyMatrix.cpp" />
     <ClCompile Include="Source.cpp" />

@@ -51,6 +51,7 @@ MyMatrix::MyMatrix(int n,int m) {
 	this->setMatrix(n, m);
 
 }
+
 MyMatrix MyMatrix::T()const {
 	MyMatrix transpose_mat(this->getCols(), this->getRows());
 	for (int i = 0; i < transpose_mat.getRows(); i++)
@@ -63,6 +64,37 @@ MyMatrix MyMatrix::T()const {
 	}
 	return transpose_mat;
 }
+double MyMatrix ::max()const {
+	int rows = this->getRows();
+	int cols = this->getCols();
+	double max = this->_matrix[0][0];
+	for (int i = 0; i < rows; i++) {
+		for (int j = 0; j < cols; j++) {
+			if (this->_matrix[i][j] > max)
+			{
+				max = this->_matrix[i][j];
+			}
+		}
+	}
+	return max;
+
+
+}
+double MyMatrix::min()const {
+	int rows = this->getRows();
+	int cols = this->getCols();
+	double min = this->_matrix[0][0];
+	for (int i = 0; i < rows; i++) {
+		for (int j = 0; j < cols; j++) {
+			if (this->_matrix[i][j] < min)
+			{
+				min = this->_matrix[i][j];
+			}
+		}
+	}
+	return min;
+}
+
 
 MyMatrix MyMatrix::mul(const MyMatrix& other)const {
 	if (this->getCols() != other.getRows()) {
@@ -144,7 +176,21 @@ void MyMatrix::merge(double* arr, int const left, int const mid, int const right
 	delete[]larr;
 	delete[]rarr;
 }
+MyMatrix MyMatrix::abs()const {
+	int rows = this->getRows();
+	int cols = this->getCols();
+	MyMatrix res(*this);
+	
+	for (int i = 0; i < rows; i++) {
+		for (int j = 0; j < cols; j++) {
+			if (res[i][j] < 0) {
+				res[i][j] = (-1) * res[i][j];
+			}
+		}
+	}
+	return res;
 
+}
 
 
 

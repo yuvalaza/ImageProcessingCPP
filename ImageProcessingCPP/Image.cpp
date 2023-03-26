@@ -1,5 +1,6 @@
 #include "Image.h"
 
+
 Image::Image(const string path) {
 	Mat  load_image = imread(path,IMREAD_GRAYSCALE);
 	if (!load_image.data)
@@ -26,9 +27,18 @@ Image:: Image(int rows, int cols, string path) {
 	this->setPath(path);
 	this->setHist();
 }
+Image ::Image(const MyMatrix& other, string path) {
+	this->setGmat(other);
+	this->setPath(path);
+	
+}
 
 void Image::setGmat(int rows,int cols) {
 	this->_gmat.setMatrix(rows, cols);
+}
+void Image::setGmat(const MyMatrix& other) {
+	this->_gmat = other;
+	//this->calHist();
 }
 
 void Image::setHist() {
@@ -227,3 +237,29 @@ Image Image::median(const int size)const {
 	return med;
 }
 
+Image Image:: gausBlur(double const sigma, const int size )const {
+	MyMatrix kernel = setGaus(sigma,size);
+	Image res(conv(this->getGmat(), kernel));
+	return res;
+
+}
+void Image::scale() {
+	int rows = this->getRows();
+	int cols = this->getCols();
+	double max_pixel = this->_gmat.max();
+	double min_pixel = this->_gmat.min();
+	cout << max_pixel << endl;
+	cout << min_pixel << endl;
+
+	for (int i = 0; i < rows; i++) {
+		for (int j = 0; j < cols; j++) {
+			this->_gmat[i][j] = (this->_gmat[i][j] - min_pixel) * 255 / (max_pixel - min_pixel);
+		}
+	}
+}
+
+Image Image::edgeDetect(const string& type, int size)const {
+	MyMatrix mask = initMask(type,size);
+	Image res(conv(this->getGmat(), mask));
+	return res;
+}
