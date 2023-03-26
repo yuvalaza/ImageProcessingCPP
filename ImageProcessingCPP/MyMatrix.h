@@ -17,10 +17,10 @@ private:
 	void merge(double* arr, int const left, int const mid, int const right);
 
 public:
-	MyMatrix(int n,int m);
 	MyMatrix();
-	~MyMatrix();
+	MyMatrix(int n, int m);
 	MyMatrix(const MyMatrix& other);
+	~MyMatrix();
 	void setMatrix(int n = 3, int m = 3);
 	int getRows()const { return this->_n; }
 	int getCols()const { return this->_m; }

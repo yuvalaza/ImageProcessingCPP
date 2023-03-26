@@ -11,14 +11,14 @@ void main()
 	
 
 	try {
-		Image imag3("image2.png");
+		Image imag3("image5.png");
 		/*MyMatrix mat3 = setSobel(3);
 		cout << mat3 << endl;
 		*/
 		//MyMatrix mat3(3, 3,rep);
 		//cin >> mat3;
 		//Image imag4(conv(imag3.getGmat(), mat3));
-		Image imag4 = imag3.edgeDetect("sobel", 3);
+		Image imag4 = imag3.edgeDetect("canny", 3,1);
 		imag4.display();
 
 		Image imag("saltPe_noise.png");

@@ -3,28 +3,121 @@
 
 
 MyMatrix initMask(string type,int size) {
+	if (type!="laplac" && type!="sobelY" && type!="sobelX" ) {
+		throw ErrorObject(UNDEFINED_MASK_TYPE_NUM, UNDEFINED_MASK_TYPE, LINK1);
+	}
 	MyMatrix mask(size, size);
-	if (type=="sobel") {
+	if (type.substr(0,5)=="sobel") {
 		mask=setSobel(type,size);
+		return mask;
+	}
+	if (type == "laplac") {
+		mask = setLaplac(size);
+		return mask;
+	}
 
+	
+}
+MyMatrix setLaplac(int size) {
+	MyMatrix mask(size, size);
+	if (size == 3) {
+		mask = laplac3();
+
+	}
+	else {
+		mask = laplac5();
 	}
 	return mask;
 }
-MyMatrix setSobel(string type,int size) {
-	if (size != 3 && size != 5) {
-		throw ErrorObject(INVALID_SOBER_SIZE_NUM, INVALID_SOBER_SIZE, LINK1);
-	}
-	MyMatrix sob(size, size);
-	double rep[3][3] = { {-1,0,1},{-2,0,2},{-1,0,1} };
-	for (int i = 0; i < size; i++) {
-		for (int j = 0; j < size; j++) {
-			sob[i][j] = rep[i][j];
-			
+MyMatrix laplac3() {
+	MyMatrix lap3(3, 3);
+	double rep3[3][3] = { {-1,-1,-1},{-1,8-1},{-1,-1,-1} };
+	for (int i = 0; i < 3; i++) {
+		for (int j = 0; j < 3; j++) {
+			lap3[i][j] = rep3[i][j];
+
 		}
 	}
+	return lap3;
+}
+
+MyMatrix laplac5() {
+	MyMatrix lap5(5, 5);
+	double rep5[5][5] = { {0,0,-1,0,0},{0,-1,-2,-1,0},{-1,-2,16,-2,-1},{0,-1,-2,-1,0},{0,0,-1,0,0}};
+	for (int i = 0; i < 5; i++) {
+		for (int j = 0; j < 5; j++) {
+			lap5[i][j] = rep5[i][j];
+
+		}
+	}
+	return lap5;
+}
+
+MyMatrix setSobel(string type,int size) {
+	MyMatrix sob(size,size);
+	if (size == 3) {
+		sob = Sobel3();
+	}
+	else {
+		sob = Sobel5();
+	}
+	
+//SobelY=(-1)*(sobelX^T)
+	if(type[5]=='Y'){
+		sob = ((sob.T())*(-1));
+		return sob;
+	}
+	else {
+		if (type[5] == 'X') {
+			return sob;
+		}
+	}
+	
+	
+	
 	return sob;
 }
-MyMatrix setGaus(double sigma, int size) {
+MyMatrix Sobel3( ) {
+	MyMatrix sob3(3, 3);
+	double rep3[3][3] = { {-1,0,1},{-2,0,2},{-1,0,1} };
+	for (int i = 0; i < 3; i++) {
+		for (int j = 0; j < 3; j++) {
+			sob3[i][j] = rep3[i][j];
+
+		}
+	}
+	return sob3;
+}
+MyMatrix Sobel5() {
+	MyMatrix sob5(5,5);
+	double rep5[5][5] = { {-1,-2,0,2,1},{-2,-3,0,3,2},{-3,-5,0,5,3},{-2,-3,0,3,2},{-1,-2,0,2,1} };
+	for (int i = 0; i < 5; i++) {
+		for (int j = 0; j < 5; j++) {
+			sob5[i][j] = rep5[i][j];
+
+		}
+	}
+	return sob5;
+}
+MyMatrix SobelMag(MyMatrix input,int size) {
+	int rows= input.getRows();
+	int cols = input.getCols();
+	MyMatrix res(rows, cols);
+	MyMatrix X = initMask("sobelX", size);
+	MyMatrix Y = initMask("sobelY", size);
+	MyMatrix dx(conv(input, X));
+	MyMatrix dy(conv(input, Y));
+
+	for (int i = 0; i < rows; i++) {
+		for (int j = 0; j < cols; j++) {
+			res[i][j] = sqrt((pow(dx[i][j], 2)) + (pow(dx[i][j], 2)));
+		}
+	}
+	return res;
+}
+
+
+MyMatrix setGaus(int size, double sigma) {
 	MyMatrix kernel(size, size);
 	int k = (size - 1) / 2;
 	int m = (size - 1) / 2;

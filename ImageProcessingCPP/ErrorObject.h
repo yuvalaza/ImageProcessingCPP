@@ -12,8 +12,11 @@ using namespace std;
 #define INVALID_INMUL_NUM 3
 #define LOAD_FAILED "image loading failed"
 #define LOAD_FAILED_NUM 4
-#define INVALID_SOBER_SIZE "Sobel's mask has to be in size 3 or 5"
-#define INVALID_SOBER_SIZE_NUM 5
+#define INVALID_MASK_SIZE "Sobel's mask has to be in size 3 or 5"
+#define INVALID_MASK_SIZE_NUM 5
+#define UNDEFINED_MASK_TYPE "Undefined type"
+#define UNDEFINED_MASK_TYPE_NUM 6
+
 
 
 

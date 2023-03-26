@@ -258,7 +258,20 @@ void Image::scale() {
 	}
 }
 
-Image Image::edgeDetect(const string& type, int size)const {
+Image Image::edgeDetect(const string& type, int size, double sigma)const {
+	if (size != 3 && size != 5) {
+		throw ErrorObject(INVALID_MASK_SIZE_NUM, INVALID_MASK_SIZE, LINK1);
+	}
+	if (type == "sobelM") {
+		Image resM(SobelMag(this->getGmat(), size));
+		return resM;
+
+	}
+	if (type == "canny") {
+		Image resC(SobelMag(conv(this->getGmat(),setGaus(size, sigma)),size));
+		return resC;
+
+	}
 	MyMatrix mask = initMask(type,size);
 	Image res(conv(this->getGmat(), mask));
 	return res;

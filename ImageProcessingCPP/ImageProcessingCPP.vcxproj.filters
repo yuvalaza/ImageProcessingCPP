@@ -55,5 +55,11 @@
     <Image Include="saltPe_noise.png">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="image6.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="image5.png">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

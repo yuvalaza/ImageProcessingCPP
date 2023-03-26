@@ -40,7 +40,7 @@ public:
 	Image equalize()const;
 	Image median(const int size = 3)const;
 	Image gausBlur(double const sigma=0.5,const int size = 3)const;
-	Image edgeDetect(const string& type,int size=3)const;
+	Image edgeDetect(const string& type,int size=3,double sigma=0.5)const;
 
 
 };

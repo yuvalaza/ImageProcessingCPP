@@ -56,7 +56,7 @@ MyMatrix MyMatrix::T()const {
 	MyMatrix transpose_mat(this->getCols(), this->getRows());
 	for (int i = 0; i < transpose_mat.getRows(); i++)
 	{
-		for (int j = 0;  transpose_mat.getCols(); j++)
+		for (int j = 0;j<transpose_mat.getCols(); j++)
 		{
 			transpose_mat[i][j] = this->_matrix[j][i];
 		}
