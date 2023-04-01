@@ -11,7 +11,7 @@
   - [Installation](#electric_plug-installation)
   - [Commands](#package-commands)
   - [Examples]()
-  - [Theory And Algorithm's Description
+  - [Theory And Algorithm's Description]()
 - [Development](#wrench-development)
   - [Developmen Environment](#nut_and_bolt-development-environment)
   - [File Structure](#file_folder-file-structure)
@@ -36,6 +36,12 @@ $ git clone https://github.com/yuvalaza/ImageProcessingCPP.git
 
 ###  :package: Commands
 - Commands to start the project.
+- 
+### Examples
+-Few examples
+
+### Theory And Algorithm's Description
+-Few examples
 
 ##  :wrench: Development
 If you want other people to contribute to this project, this is the section, make sure you always add this.
