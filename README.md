@@ -14,10 +14,8 @@
 - [Development](#wrench-development)
   - [Developmen Environment](#nut_and_bolt-development-environment)
   - [File Structure](#file_folder-file-structure)
-  - [Branches](#cactus-branches)
 - [FAQ](#question-faq)
 - [Resources](#page_facing_up-resources)
-- [Gallery](#camera-gallery)
 - [Credit/Acknowledgment](#star2-creditacknowledgment)
 - [License](#lock-license)
 
@@ -32,7 +30,7 @@ Write about how to use this project.
 - Be very detailed here, For example, if you have tools which run on different operating systems, write installation steps for all of them.
 
 ```
-$ add installations steps if you have to.
+$ git clone https://github.com/yuvalaza/ImageProcessingCPP.git
 ```
 
 ###  :package: Commands
@@ -81,16 +79,6 @@ Add a file structure here with the basic details about files, below is an exampl
 | 1  | index | Entry point
 
 
- ### :cactus: Branches
-
- I use an agile continuous integration methodology, so the version is frequently updated and development is really fast.
-
-1. **`stage`** is the development branch.
-
-2. **`master`** is the production branch.
-
-3. No other permanent branches should be created in the main repository, you can create feature branches but they should get merged with the master.
-
 
 
 ### :exclamation: Guideline
@@ -102,9 +90,6 @@ You can optionally add a FAQ section about the project.
 
 ##  :page_facing_up: Resources
 Add important resources here
-
-##  :camera: Gallery
-Pictures of your project.
 
 ## :star2: Credit/Acknowledgment
 Credit the authors here.
