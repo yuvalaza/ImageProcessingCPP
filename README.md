@@ -11,6 +11,7 @@
   - [Installation](#electric_plug-installation)
   - [Commands](#package-commands)
   - [Examples]()
+  - [Theory And Algorithm's Description
 - [Development](#wrench-development)
   - [Developmen Environment](#nut_and_bolt-development-environment)
   - [File Structure](#file_folder-file-structure)
