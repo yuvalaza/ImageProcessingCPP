@@ -191,6 +191,33 @@ MyMatrix MyMatrix::abs()const {
 	return res;
 
 }
+MyMatrix MyMatrix::integ()const {
+	int rows = this->getRows();
+	int cols = this->getCols();
+	MyMatrix res(*this);
+	for (int i = 0; i < rows; i++) {
+		for (int j = 0; j < cols; j++) {
+			if (i > 0 && j > 0) {
+				res[i][j] = res[i][j] + res[i - 1][j] + res[i][j - 1] - res[i - 1][j - 1];
+			}
+			else {
+				if (i > 0) {
+					res[i][j] = res[i][j] + res[i - 1][j];
+				}
+				else {
+					if (j == 0) {
+						res[i][j] = res[i][j];
+					}
+					else {
+						res[i][j] = res[i][j] + res[i][j - 1];
+					}
+				}
+			}
+		}
+	}
+	return res;
+
+}
 
 
 
@@ -358,4 +385,25 @@ MyMatrix MyMatrix:: operator-(const MyMatrix& other) const {
 
 	 }
 	 return new_mat;
+ }
+ void MyMatrix::cvNorm() {
+	int rows = this->getRows();
+	int cols = this->getCols();
+	Mat new_image(rows, cols, CV_64F);
+		for (int i = 0; i < rows; i++) {
+			for (int j = 0; j < cols; j++)
+			{
+				new_image.at<double>(i, j) = this->_matrix[i][j];
+			}
+
+		}
+		new_image.convertTo(new_image, CV_8U);
+		new_image.convertTo(new_image, CV_64F);
+		for (int i = 0; i < rows; i++) {
+			for (int j = 0; j < cols; j++)
+			{
+				this->_matrix[i][j] = new_image.at<double>(i, j);
+			}
+
+	}
  }

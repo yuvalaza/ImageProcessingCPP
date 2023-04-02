@@ -164,6 +164,8 @@
     <Image Include="image4.bmp" />
     <Image Include="image5.png" />
     <Image Include="image6.png" />
+    <Image Include="image7.jpg" />
+    <Image Include="image8.jpg" />
     <Image Include="saltPe_noise.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

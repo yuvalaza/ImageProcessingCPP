@@ -3,7 +3,10 @@
 #include<iostream>
 #define _USE_MATH_DEFINES
 #include<math.h>
-
+#include <opencv2/imgproc/imgproc.hpp>
+#include <opencv2/highgui/highgui.hpp>
+#include<algorithm>
+using namespace cv;
 using namespace std;
 
 class MyMatrix 
@@ -29,7 +32,10 @@ public:
 	MyMatrix mul(const MyMatrix& other)const;
 	MyMatrix T()const;
 	MyMatrix abs()const;
+	MyMatrix integ()const;
 	void sort();
+	void cvNorm();
+
 
 
 	MyMatrix& operator=(const MyMatrix& other);

@@ -1,9 +1,12 @@
 
 #include "Image.h"
-
+using namespace std;
 
 void main() 
 {
+	/*Image imag9("image2.png");
+	imag9.gausBlur(11,2).display();*/
+	//cout << getHaar("DoubleH", 6,0.5) << endl;
 	/*Image imag3("image2.png");
 	imag3.display();
 	imag3.gausBlur(1,7).display();
@@ -11,15 +14,20 @@ void main()
 	
 
 	try {
-		Image imag3("image5.png");
+		Image imag3("image8.jpg");
 		/*MyMatrix mat3 = setSobel(3);
 		cout << mat3 << endl;
 		*/
 		//MyMatrix mat3(3, 3,rep);
 		//cin >> mat3;
 		//Image imag4(conv(imag3.getGmat(), mat3));
-		Image imag4 = imag3.edgeDetect("canny", 3,1);
-		imag4.display();
+		//Image imag6(imag3.gausBlur(5,2));
+		//imag6.display();
+		//Image imag4 = imag3.edgeDetect("sobelX", 3);
+		//imag4.display();
+		//imag4.display();
+		Image imag7(imag3.corners(3));
+		imag7.display();
 
 		Image imag("saltPe_noise.png");
 		Image imag2(imag.getGmat().getRows(), imag.getGmat().getCols());

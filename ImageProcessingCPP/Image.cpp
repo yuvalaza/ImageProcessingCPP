@@ -80,6 +80,7 @@ void Image::display()const {
 	waitKey(0);
 	destroyWindow(windowName);
 }
+
 void Image::showHist()const {
 	double normalize_factor = 100;
 	String windowName;
@@ -237,8 +238,8 @@ Image Image::median(const int size)const {
 	return med;
 }
 
-Image Image:: gausBlur(double const sigma, const int size )const {
-	MyMatrix kernel = setGaus(sigma,size);
+Image Image:: gausBlur(const int size, double const sigma)const {
+	MyMatrix kernel = setGaus(size,sigma);
 	Image res(conv(this->getGmat(), kernel));
 	return res;
 
@@ -276,3 +277,53 @@ Image Image::edgeDetect(const string& type, int size, double sigma)const {
 	Image res(conv(this->getGmat(), mask));
 	return res;
 }
+
+Image Image::corners(int size, double threshold_value) {
+	double a=0,b=0 ,c=0 ,lamda1=0 ,lamda2=0,R = 0,mean=0;
+	int rows = this->getRows();
+	int cols = this->getCols();
+	Image res(rows, cols);
+	Image blur = this->gausBlur(5,0.79);
+	MyMatrix dx(conv(blur.getGmat(),setSobel("sobelX")));
+	MyMatrix dy(conv(blur.getGmat(), setSobel("sobelY")));
+	/*dx.cvNorm();
+	dy.cvNorm();*/
+	
+	for (int i = 0; i < rows; i++) {
+		for (int j = 0; j < cols; j++) {
+			for (int k = i-(size/2); k <= i+(size / 2); k++) {
+				if (k >= 0 && k < rows) {
+
+					for (int m = j - (size / 2); m <= j + (size / 2); m++) {
+						if (m >= 0 && m<cols) {
+							a += pow(dx[k][m], 2);
+							b += (dx[k][m]) * (dy[k][m]);
+							c += pow(dy[k][m], 2);
+						}
+					}
+				}
+			}
+			b = b * 2;
+			lamda1 = (0.5) * (a + c + sqrt(pow(b, 2) + pow(a - c, 2)));
+			lamda2 = (0.5) * (a + c - sqrt(pow(b, 2) + pow(a - c, 2)));
+			R = lamda1 * lamda2 - ((0.05) * pow(lamda1 + lamda2, 2));
+			//res._gmat[i][j] = R;
+			if (R >threshold_value) {
+				res._gmat[i][j] = 255;
+			}
+			else {
+				res._gmat[i][j] = 0;
+			}
+			//cout << R << endl;
+			lamda1 = 0;
+			lamda2 = 0;
+			a = 0;
+			b = 0;
+			c = 0;
+			}
+		
+		}
+	return res;
+	}
+	
+

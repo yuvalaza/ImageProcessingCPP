@@ -125,7 +125,7 @@ MyMatrix setGaus(int size, double sigma) {
 	for (int i = 0; i < size; i++) {
 		for (int j = 0; j < size; j++) {
 			kernel[i][j] = factor * exp((-0.5) * ((pow(i-k, 2) + pow(j-m, 2)) / pow(sigma, 2)));
-			//cout << kernel[i][j] << endl;
+			cout << kernel[i][j] << endl;
 		}
 	}
 	return kernel;
@@ -143,9 +143,9 @@ MyMatrix conv(const MyMatrix& matA, const MyMatrix& filter) {
 		for (int j = 0; j < in_cols; j++) {
 
 			for (int n = 0; n < h_rows; n++) {
-				if (i - n > 0) {
+				if (i - n >= 0) {
 					for (int m = 0; m < h_cols; m++) {
-						if (j - m > 0) {
+						if (j - m >= 0) {
 							sum += matA[i - n][j - m] * filter[h_rows-1-n][h_cols-1-m];
 						}
 					}
@@ -165,4 +165,105 @@ MyMatrix conv(const MyMatrix& matA, const MyMatrix& filter) {
 	return res;
 }
 
-	
+MyMatrix getHaar(string type, int width,double W_L_ratio) {
+	int length = width * W_L_ratio;
+	if (type == "Vert") {
+		return setVertHaar(width, length);
+	}
+	if (type == "Horiz") {
+		return setHorizHaar(width, length);
+	}
+	if (type == "Diag") {
+		return setDiagHaar(width, length);
+	}
+	if (type == "DoubleV") {
+		return setDoubVertHaar(width, length);
+	}
+	if (type == "DoubleH") {
+		return setDoubHoizHaar(width, length);
+	}
+
+}
+static MyMatrix setVertHaar(int width,int length) {
+	MyMatrix res(length, width);
+	for (int i = 0; i < length; i++) {
+		for (int j = 0; j < width; j++) {
+			if (j <width / 2) {
+				res[i][j] = 1;
+			}
+			else {
+				res[i][j] = -1;
+			}
+		}
+	}
+	return res;
+}
+static MyMatrix setHorizHaar(int width, int length) {
+	MyMatrix res(length, width);
+	for (int i = 0; i < length; i++) {
+		for (int j = 0; j < width; j++) {
+			if (i < length / 2) {
+				res[i][j] = 1;
+			}
+			else {
+				res[i][j] = -1;
+			}
+		}
+	}
+	return res;
+}
+
+static MyMatrix setDiagHaar(int width, int length) {
+	MyMatrix res(length, width);
+	for (int i = 0; i < length; i++) {
+		for (int j = 0; j < width; j++) {
+			if ((i < length / 2 && j<width/2) || (i >= length / 2 && j >= width / 2)) {
+				res[i][j] = 1;
+			}
+			else {
+				res[i][j] = -1;
+			}
+		}
+	}
+	return res;
+}
+
+static MyMatrix setDoubHoizHaar(int width, int length) {
+	MyMatrix res(length, width);
+	for (int i = 0; i < length; i++) {
+		for (int j = 0; j < width; j++) {
+			if (i <length /3  || i>=2*(length/3)) {
+				res[i][j] = 1;
+			}
+			else {
+				res[i][j] = -1;
+			}
+		}
+	}
+	return res;
+
+}
+static MyMatrix setDoubVertHaar(int width, int length) {
+	MyMatrix res(length, width);
+	for (int i = 0; i < length; i++) {
+		for (int j = 0; j < width; j++) {
+			if (j< width / 3 || j >= 2 * (width / 3)) {
+				res[i][j] = 1;
+			}
+			else {
+				res[i][j] = -1;
+			}
+		}
+	}
+	return res;
+}
+MyMatrix calcHaar(const MyMatrix& input,string type, int width, double W_L_ratio) {
+	int rows = input.getRows();
+	int cols = input.getCols();
+	MyMatrix res(rows, cols);
+	MyMatrix H(getHaar(type, width, W_L_ratio));
+	MyMatrix integral(input.integ());
+
+
+	return res;
+}

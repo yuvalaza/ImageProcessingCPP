@@ -61,5 +61,11 @@
     <Image Include="image5.png">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="image7.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="image8.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

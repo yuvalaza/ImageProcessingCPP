@@ -1,11 +1,8 @@
 #pragma once
 
 #include "Funcs.h"
-#include <opencv2/imgproc/imgproc.hpp>
-#include <opencv2/objdetect/objdetect.hpp>
-#include <opencv2/highgui/highgui.hpp>
-#include<algorithm>
-using namespace cv;
+
+
 
 
 class Image
@@ -39,8 +36,8 @@ public:
 	Image ContrastStretch()const;
 	Image equalize()const;
 	Image median(const int size = 3)const;
-	Image gausBlur(double const sigma=0.5,const int size = 3)const;
+	Image gausBlur(const int size = 3, double const sigma = 0.477)const;
 	Image edgeDetect(const string& type,int size=3,double sigma=0.5)const;
-
+	Image corners(int size, double threshold_value= 5.1 * (pow(10, 7)));
 
 };
