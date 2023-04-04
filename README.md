@@ -1,6 +1,6 @@
 # ImageProcessingCPP
 # Introduction
--Welcome to my CPP project, which focuses on implementing various image processing algorithms from scratch such as filtering, edge detection, corner detection, SIFT detector, relevant mathematical functions and more.
+Welcome to my CPP project, which focuses on implementing various image processing algorithms from scratch such as filtering, edge detection, corner detection, SIFT detector, relevant mathematical functions and more. In addition I implemented my own matrix class that include many arithmetic and mathematical functions as well as suitable operators.
 
 ## :ledger: Table Of Content
 
@@ -8,8 +8,8 @@
 - [Usage](#zap-usage)
   - [Installation](#electric_plug-installation)
   - [Commands](#package-commands)
-  - [Examples]()
   - [Theory And Algorithm's Description]()
+  - [Examples]()
 - [Development](#wrench-development)
   - [Developmen Environment](#nut_and_bolt-development-environment)
   - [File Structure](#file_folder-file-structure)
@@ -35,10 +35,10 @@ $ git clone https://github.com/yuvalaza/ImageProcessingCPP.git
 ###  :package: Commands
 - Commands to start the project.
 - 
-### Examples
+### Theory And Algorithm's Description
 -Few examples
 
-### Theory And Algorithm's Description
+### Examples
 -Few examples
 
 ##  :wrench: Development
