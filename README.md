@@ -1,8 +1,6 @@
 # ImageProcessingCPP
 # Introduction
-- Add your project logo.
-- Write a short introduction to the project.
-- If you are using badges, add them here.
+-Welcome to my CPP project, which focuses on implementing various image processing algorithms from scratch such as filtering, edge detection, corner detection, SIFT detector, relevant mathematical functions and more.
 
 ## :ledger: Table Of Content
 
