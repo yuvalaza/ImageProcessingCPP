@@ -34,7 +34,7 @@ Here is a summary of the methods provided by the MyMatrix class:
 
 | Method                            | Description                                                                     |
 | --------------------------------- | -----------------------------------------------------------------------------   |
-| `MyMatrix()`                      | Default constructor. Initializes an zero values 3x3 matrix.                      |
+| `MyMatrix()`                      | Default constructor. Initializes zeros values 3x3 matrix.                      |
 | `MyMatrix(int n, int m)`          | Constructs a zero values matrix of size `n x m`.                                            |
 | `MyMatrix(const MyMatrix& other)` | Copy constructor. Creates a new matrix that is a copy of `other`.               |
 | `MyMatrix(const Mat& other)`      | Creates a new matrix that is a copy of the given `cv::Mat` object.              |
