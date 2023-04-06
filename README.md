@@ -5,6 +5,8 @@ Welcome to my CPP project, which focuses on implementing various image processin
 ## :ledger: Table Of Content
 
 - [About](#beginner-about)
+    - [MyMatrix class overview]()
+    - [Image class overview]()
 - [Usage](#zap-usage)
   - [Installation](#electric_plug-installation)
   - [Commands](#package-commands)
@@ -19,6 +21,7 @@ Welcome to my CPP project, which focuses on implementing various image processin
 - [License](#lock-license)
 
 ##  :beginner: About
+###  MyMatrix class overview
 At this project I implemented every algorithm from scratch, In order to do that I built the “MyMatrix” class. By providing a flexible and efficient matrix data structure, the class simplifies the process of implementing complex algorithms that require matrix operations.
 Here is a summary of the methods provided by the MyMatrix class:
 
@@ -59,6 +62,7 @@ Here is a summary of the methods provided by the MyMatrix class:
 | `operator*(double num) const`    | Scalar multiplication operator. Returns the product of `this` and `num`.     |
 | `operator*(int num) const`       | Scalar multiplication operator. Returns the product of `this` and `num`.     |
 
+### Image class overview
 
 ## :zap: Usage
 Write about how to use this project.
