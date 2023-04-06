@@ -61,6 +61,9 @@ Here is a summary of the methods provided by the MyMatrix class:
 | `operator*(const MyMatrix& other) const` | Matrix multiplication operator. Returns the matrix of the element-wise multiplication of `this` and `other`. |
 | `operator*(double num) const`    | Scalar multiplication operator. Returns the product of `this` and `num`.     |
 | `operator*(int num) const`       | Scalar multiplication operator. Returns the product of `this` and `num`.     |
+| `friend ostream& operator<<(ostream& out, const MyMatrix& other)`  | Overloads the `<<` operator  for getting easy output of `MyMatrix` objects. |
+| `double*& operator [](const int& index) const`  | Overloads the `[]` operator to allow easy access to elements in a `MyMatrix` object. |
+| `friend istream& operator>>(istream& in, MyMatrix& other)` | Overloads the `>>` operator to allow inserting input values to `MyMatrix` objects. |
 
 ### Image class overview
  This class can be used to perform various image processing tasks or as a foundation for building more advanced image processing algorithms.
