@@ -63,6 +63,44 @@ Here is a summary of the methods provided by the MyMatrix class:
 | `operator*(int num) const`       | Scalar multiplication operator. Returns the product of `this` and `num`.     |
 
 ### Image class overview
+ This class can be used to perform various image processing tasks or as a foundation for building more advanced image processing algorithms.
+
+| Property    | Description                                          |
+| ----------- | ---------------------------------------------------- |
+| `_histogram` | A `MyMatrix` object representing the image histogram. |
+| `_path`     | A string representing the path to the image file.    |
+| `_gmat`     | A `MyMatrix` object representing the image matrix.   |
+
+
+| Method                                      | Description                                                       |
+| ------------------------------------------- | ----------------------------------------------------------------- |
+| `calHist()const`                             | Calculates and returns the histogram of the image                |
+| `Image(const string file_name)`              | Constructor that reads an image from a file                       |
+| `Image(int rows, int cols,string path="None")` | Constructor that creates an image with specified rows and columns |
+| `Image(const MyMatrix& other, string path = "None")` | Constructor that creates an image from a matrix                   |
+| `setPath(string path)`                       | Sets the path of the image                                        |
+| `setGmat(int rows, int cols)`                | Sets zero values matrix of the image with specified rows and columns      |
+| `setGmat(const MyMatrix& other)`             | Sets the matrix of the image from a matrix                         |
+| `setHist()`                                  | Calculates and sets the histogram of the image                    |
+| `scale()`                                    | Scales the image by MinMax Norm                                       |
+| `getRows()const`                             | Returns the number of rows in the image                            |
+| `getCols()const`                             | Returns the number of columns in the image                         |
+| `getHist()const`                             | Returns the histogram of the image                                 |
+| `getGmat()const`                             | Returns the matrix of the image                                    |
+| `getPath()const`                             | Returns the path of the image                                      |
+| `display()const`                             | Displays the image                                                |
+| `getHistPercentile(const int p)const`        | Returns the p-th percentile in the histogram                       |
+| `showHist()const`                            | Displays the histogram of the image                                |
+| `drawHist(const vector<double>& data, Mat3b& dst, int binSize = 3, int height = 0)const` | Draws the histogram of the image |
+| `ContrastStretch()const`                     | Applies contrast stretching to the image                            |
+| `equalize()const`                            | Applies histogram equalization to the image                         |
+| `median(const int size = 3)const`            | Applies median filtering to the image with specified kernel size  |
+| `gausBlur(const int size = 3, double const sigma = 0.477)const` | Applies Gaussian blur to the image with specified kernel size and sigma |
+| `edgeDetect(const string& type,int size=3,double sigma=0.5)const` | Detects edges in the image using the specified method-SobelX/SobelY/Sobel/Laplac |
+| `corners(int size, double threshold_value= 5.1 * (pow(10, 7)))` | Finds corners in the image using the specified method |
+| `sift(double s=1.2, int gausSize = 15, double sigma = 1,int setSize=10, int window_Size=100)` | Applies SIFT feature extraction to the image |
+| `drawCirc(MyMatrix* maxSet,int setSize,int thickness,double radius, int factor=1.2)const` | Draws circles around the detected features in the image |
+
 
 ## :zap: Usage
 Write about how to use this project.
