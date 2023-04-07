@@ -104,7 +104,7 @@ Here is a summary of the methods provided by the MyMatrix class:
 | `equalize()const`                            | Applies histogram equalization to the image                         |
 | `median(const int size = 3)const`            | Applies median filtering to the image with specified kernel size  |
 | `gausBlur(const int size = 3, double const sigma = 0.477)const` | Applies Gaussian blur to the image with specified kernel size and sigma |
-| `edgeDetect(const string& type,int size=3,double sigma=0.5)const` | Detects edges in the image using the specified method-SobelX/SobelY/Sobel/Laplac |
+| `edgeDetect(const string& type,int size=3,double sigma=0.5)const` | Detects edges in the image using the specified method-SobelX/SobelY/Sobel/Laplac/Canny |
 | `corners(int size, double threshold_value= 5.1 * (pow(10, 7)))` | Finds corners in the image using the specified method |
 | `sift(double s=1.2, int gausSize = 15, double sigma = 1,int setSize=10, int window_Size=100)` | Applies SIFT feature extraction to the image |
 | `drawCirc(MyMatrix* maxSet,int setSize,int thickness,double radius, int factor=1.2)const` | Draws circles around the detected features in the image |
@@ -130,13 +130,21 @@ If you didn’t install OpenCV yet , you can follow this guide:
 At this section I will describe few algorithms that I implemented in this project. 
 - **2D Convolution**</br>
     The 2D convolution of two discrete functions f(x,y) and g(x,y) is defined as:</br>
-        $(f \ast g)[n,m] = \sum\limits_{k=-\infty}^{\infty}\sum\limits_{l=-\infty}^{\infty}f[k,l] \cdot g[n-k,m-l]$</br>
+        $(f \ast g)[n,m] = \sum\limits_{k=-\infty}^{\infty}\sum\limits_{l=-\infty}^{\infty}f[k,l] \cdot g[n-k,m-l]$</br></br>
+        
+- **Gaussian Kernel**</br>
+    $M_{i,j}=\frac{1}{2\pi\sigma^2}\exp(-\frac{1}{2}\frac{i^2+j^2}{\sigma^2})\$</br>
+    Where ${\sigma^2}$ is the variance.</br></br>
+
 - **Discrete Gradient $\nabla$ Operator**</br>
     Finite difference approximations:</br>
         $\frac{\partial I}{\partial x}\approx\frac{1}{2 \epsilon} \left( (I_{i+1,j+1} - I_{i,j+1}) + (I_{i+1,j} - I_{i,j}) \right)$</br>
         $\frac{\partial I}{\partial y}\approx\frac{1}{2 \epsilon} \left( (I_{i+1,j+1} - I_{i+1,j}) + (I_{i,j+1} - I_{i,j}) \right)$</br>
     This operator can be implemented as Convolution. 
+    The Gradient magnitude:</br>
+    $|\nabla I| = \sqrt{(\frac{\partial I}{\partial x})^2 + (\frac{\partial I}{\partial y})^2}$</br></br>
     Over the last few decades  , a variety of gradient operators have been proposed like: Roberts Operator, Pewitt, and the one I used in this project, Sobel.</br></br>
+
 - **Discrete Laplacian $\nabla^2$ Operator:**</br>
     Finite difference approximations:</br>
         $\frac{\partial^2 I}{\partial x^2}\approx\frac{1}{ \epsilon^2} \( (I_{i-1,j} -2 I_{i,j} + I_{i+1,j} )$</br>
@@ -144,6 +152,20 @@ At this section I will describe few algorithms that I implemented in this projec
         and we get that:</br>
         $\nabla^2 I\approx\frac{\partial^2 I}{\partial x^2}+\frac{\partial^2 I}{\partial y^2}$</br>
     As well As the Gradient Operator, the Laplacian Operator can be implemented as Convolution .</br></br>
+- **Harris Corner Detection**</br>
+This algorithms is based on fitting ellipse to the pixel’s intensity distribution.</br></br>
+Lets define ${\lambda{_1}}$ as the length  of the semi-major axis of the ellipse which is also equal to maximum second moment E_max,</br> and ${\lambda{_2}}$ as the length  of the semi-minor axis which is also equal to minimum second moment E_min.</br>
+In addition, lest define the Second Moments for a Region:</br>
+$a={\Sigma}{(I_x[i])^2}$, $b=2{\Sigma}{(I_x[i]}{I_y[i])}$, $c={\Sigma}{(I_y[i])^2}$ </br>
+
+  where:</br>
+  ${\lambda_{1}}=\frac{1}{2}\(a+c+\sqrt{b^2+(a-c)^2})$</br>
+  ${\lambda_{2}}=\frac{1}{2}\(a+c+\sqrt{b^2-(a-c)^2})$</br>
+
+
+  Harris has designed a simple expression, called the response function, that maps ${\lambda_{1}}$  and ${\lambda_{2}}$ to a single number R which help us to decide if we found a corner:</br>
+  ![image](https://user-images.githubusercontent.com/62516148/230616611-0dae78c5-6868-4a3c-8236-9dca35178e58.png)
+
 
 
 
