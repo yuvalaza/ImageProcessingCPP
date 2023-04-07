@@ -2,6 +2,11 @@
 # Introduction
 Welcome to my CPP project, which focuses on implementing various image processing algorithms from scratch such as filtering, edge detection, corner detection, SIFT detector, relevant mathematical functions and more. In addition I implemented my own matrix class that include many arithmetic and mathematical functions as well as suitable operators.
 
+
+
+
+
+
 ## :ledger: Table Of Content
 
 - [About](#beginner-about)
@@ -106,21 +111,41 @@ Here is a summary of the methods provided by the MyMatrix class:
 
 
 ## :zap: Usage
-Write about how to use this project.
+This project really easy to use, in the following sections i will describe how to start use it, i will give various examples and some theory explanations.
 
 ###  :electric_plug: Installation
-- Steps on how to install this project, to use it.
-- Be very detailed here, For example, if you have tools which run on different operating systems, write installation steps for all of them.
-
+-In oreder to use this project you just have to clone it:
 ```
 $ git clone https://github.com/yuvalaza/ImageProcessingCPP.git
 ```
+In addition, in this project I used OpenCV for loading, displaying and saving images.
+If you didn’t install OpenCV yet , you can follow this guide:
+[OpenCV Installation Guide](https://www.tutorialspoint.com/how-to-install-opencv-for-cplusplus-in-windows)
+
 
 ###  :package: Commands
 - Commands to start the project.
 - 
 ### Theory And Algorithm's Description
--Few examples
+At this section I will describe few algorithms that I implemented in this project. 
+- **2D Convolution**</br>
+    The 2D convolution of two discrete functions f(x,y) and g(x,y) is defined as:</br>
+        $(f \ast g)[n,m] = \sum\limits_{k=-\infty}^{\infty}\sum\limits_{l=-\infty}^{\infty}f[k,l] \cdot g[n-k,m-l]$</br>
+- **Discrete Gradient $\nabla$ Operator**</br>
+    Finite difference approximations:</br>
+        $\frac{\partial I}{\partial x}\approx\frac{1}{2 \epsilon} \left( (I_{i+1,j+1} - I_{i,j+1}) + (I_{i+1,j} - I_{i,j}) \right)$</br>
+        $\frac{\partial I}{\partial y}\approx\frac{1}{2 \epsilon} \left( (I_{i+1,j+1} - I_{i+1,j}) + (I_{i,j+1} - I_{i,j}) \right)$</br>
+    This operator can be implemented as Convolution. 
+    Over the last few decades  , a variety of gradient operators have been proposed like: Roberts Operator, Pewitt, and the one I used in this project, Sobel.</br></br>
+- **Discrete Laplacian $\nabla^2$ Operator:**</br>
+    Finite difference approximations:</br>
+        $\frac{\partial^2 I}{\partial x^2}\approx\frac{1}{ \epsilon^2} \( (I_{i-1,j} -2 I_{i,j} + I_{i+1,j} )$</br>
+        $\frac{\partial^2 I}{\partial y^2}\approx\frac{1}{ \epsilon^2} \( (I_{i,j-1} -2 I_{i,j} + I_{i,j+1} )$</br>
+        and we get that:</br>
+        $\nabla^2 I\approx\frac{\partial^2 I}{\partial x^2}+\frac{\partial^2 I}{\partial y^2}$</br>
+    As well As the Gradient Operator, the Laplacian Operator can be implemented as Convolution .</br></br>
+
+
 
 ### Examples
 -Few examples
