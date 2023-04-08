@@ -97,6 +97,7 @@ Here is a summary of the methods provided by the MyMatrix class:
 | `getGmat()const`                             | Returns the matrix of the image                                    |
 | `getPath()const`                             | Returns the path of the image                                      |
 | `display()const`                             | Displays the image                                                |
+| `save()const`                                | Saves the image                                                    |
 | `getHistPercentile(const int p)const`        | Returns the p-th percentile in the histogram                       |
 | `showHist()const`                            | Displays the histogram of the image                                |
 | `drawHist(const vector<double>& data, Mat3b& dst, int binSize = 3, int height = 0)const` | Draws the histogram of the image |
