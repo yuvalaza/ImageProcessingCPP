@@ -18,9 +18,6 @@ Welcome to my CPP project, which focuses on implementing various image processin
   - [Theory And Algorithm's Description]()
   - [Examples]()
 - [Development](#wrench-development)
-  - [Developmen Environment](#nut_and_bolt-development-environment)
-  - [File Structure](#file_folder-file-structure)
-- [FAQ](#question-faq)
 - [Resources](#page_facing_up-resources)
 - [Credit/Acknowledgment](#star2-creditacknowledgment)
 - [License](#lock-license)
@@ -179,8 +176,6 @@ $a={\Sigma}{(I_x[i])^2}$, $b=2{\Sigma}{(I_x[i]}{I_y[i])}$, $c={\Sigma}{(I_y[i])^
   ![image](https://user-images.githubusercontent.com/62516148/230616611-0dae78c5-6868-4a3c-8236-9dca35178e58.png)
 
 
-
-
 ### Examples
 -Few examples
 
@@ -191,50 +186,6 @@ If you want other people to contribute to this project, this is the section, mak
 List all the pre-requisites the system needs to develop this project.
 - A tool
 - B tool
-
-###  :nut_and_bolt: Development Environment
-Write about setting up the working environment for your project.
-- How to download the project...
-- How to install dependencies...
-
-
-###  :file_folder: File Structure
-Add a file structure here with the basic details about files, below is an example.
-
-```
-.
-├── assets
-│   ├── css
-│   │   ├── index-ui.css
-│   │   └── rate-ui.css
-│   ├── images
-│   │   ├── icons
-│   │   │   ├── shrink-button.png
-│   │   │   └── umbrella.png
-│   │   ├── logo_144.png
-│   │   └── Untitled-1.psd
-│   └── javascript
-│       ├── index.js
-│       └── rate.js
-├── CNAME
-├── index.html
-├── rate.html
-└── README.md
-```
-
-| No | File Name | Details 
-|----|------------|-------|
-| 1  | index | Entry point
-
-
-
-
-### :exclamation: Guideline
-coding guidelines or other things you want people to follow should follow.
-
-
-## :question: FAQ
-You can optionally add a FAQ section about the project.
 
 ##  :page_facing_up: Resources
 Add important resources here
