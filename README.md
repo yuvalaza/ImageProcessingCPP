@@ -10,19 +10,19 @@ Welcome to my CPP project, which focuses on implementing various image processin
 ## :ledger: Table Of Content
 
 - [About](#beginner-about)
-    - [MyMatrix class overview]()
-    - [Image class overview]()
+    - [MyMatrix class overview](#mymatrix-class-overview)
+    - [Image class overview](#image-class-overview)
 - [Usage](#zap-usage)
   - [Installation](#electric_plug-installation)
-  - [Commands](#package-commands)
-  - [Theory And Algorithm's Description]()
-  - [Examples]()
+  - [Theory And Algorithm's Description](#bulb-theory-and-algorithms-description)
+  - [Commands And Examples](#package-commands-and-examples)
 - [Development](#wrench-development)
 - [Resources](#page_facing_up-resources)
 - [Credit/Acknowledgment](#star2-creditacknowledgment)
 - [License](#lock-license)
 
 ##  :beginner: About
+
 ###  MyMatrix class overview
 At this project I implemented every algorithm from scratch, In order to do that I built the “MyMatrix” class. By providing a flexible and efficient matrix data structure, the class simplifies the process of implementing complex algorithms that require matrix operations.
 Here is a summary of the methods provided by the MyMatrix class:
@@ -119,12 +119,8 @@ $ git clone https://github.com/yuvalaza/ImageProcessingCPP.git
 In addition, in this project I used OpenCV for loading, displaying and saving images.
 If you didn’t install OpenCV yet , you can follow this guide:
 [OpenCV Installation Guide](https://www.tutorialspoint.com/how-to-install-opencv-for-cplusplus-in-windows)
-
-
-###  :package: Commands
-- Commands to start the project.
-- 
-### Theory And Algorithm's Description
+ 
+### :bulb: Theory And Algorithm's Description
 At this section I will describe few algorithms that I implemented in this project. 
 - **2D Convolution**</br>
     The 2D convolution of two discrete functions f(x,y) and g(x,y) is defined as:</br>
@@ -176,7 +172,8 @@ $a={\Sigma}{(I_x[i])^2}$, $b=2{\Sigma}{(I_x[i]}{I_y[i])}$, $c={\Sigma}{(I_y[i])^
   ![image](https://user-images.githubusercontent.com/62516148/230616611-0dae78c5-6868-4a3c-8236-9dca35178e58.png)
 
 
-### Examples
+###  :package: Commands And Examples
+- Commands to start the project.
 -Few examples
 
 ##  :wrench: Development
