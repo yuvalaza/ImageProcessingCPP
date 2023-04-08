@@ -153,6 +153,17 @@ At this section I will describe few algorithms that I implemented in this projec
         and we get that:</br>
         $\nabla^2 I\approx\frac{\partial^2 I}{\partial x^2}+\frac{\partial^2 I}{\partial y^2}$</br>
     As well As the Gradient Operator, the Laplacian Operator can be implemented as Convolution .</br></br>
+- **Canny Edge Detector**</br>
+    - Smooth Image with 2D Gaussian.</br>
+    - Compute Image Gradient using Sobel Operator: $(\nabla n_\sigma \ast I)$ </br>
+    - Find Gradient Magnitude at each pixel </br>
+    - Find Gradient Orientation at each Pixel </br>
+    - Compute Laplacian along the Gradient Direction at each pixel </br>
+    - Find Zero Crossings in Laplacian to find the edge location  </br>
+
+
+
+
 - **Harris Corner Detection**</br>
 This algorithms is based on fitting ellipse to the pixel’s intensity distribution.</br></br>
 Lets define ${\lambda{_1}}$ as the length  of the semi-major axis of the ellipse which is also equal to maximum second moment E_max,</br> and ${\lambda{_2}}$ as the length  of the semi-minor axis which is also equal to minimum second moment E_min.</br>
