@@ -214,10 +214,15 @@ $a={\Sigma}{(I_x[i])^2}$, $b=2{\Sigma}{(I_x[i]}{I_y[i])}$, $c={\Sigma}{(I_y[i])^
    imagL.display();
    imagL.save();
    ```
-   ![alt text](/path/to/image.png "Output-SobelX")</br>
-   ![alt text](/path/to/image.png "Output-SobelY")</br>
-   ![alt text](/path/to/image.png "Output-SobelM")</br>
-   ![alt text](/path/to/image.png "Output-Laplac")</br>
+   **Outputs:**</br></br>
+   **SobelX:**</br>
+   ![alt text](ImageProcessingCPP/image2-sobelX.png "Output-SobelX")</br></br>
+   **SobelY:**</br>
+   ![alt text](ImageProcessingCPP/image2-sobelY.png "Output-SobelY")</br></br>
+   **SobelM:**</br>
+   ![alt text](ImageProcessingCPP/image2-SobelM.png "Output-SobelM")</br></br>
+   **Laplac:**</br>
+   ![alt text](ImageProcessingCPP/image2-laplac.png "Output-Laplac")</br></br>
    
    **Corner Detection**</br>
    ![alt text](/path/to/image.png "Input")</br>
