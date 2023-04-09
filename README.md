@@ -16,9 +16,7 @@ Welcome to my CPP project, which focuses on implementing various image processin
   - [Installation](#electric_plug-installation)
   - [Theory And Algorithm's Description](#bulb-theory-and-algorithms-description)
   - [Commands And Examples](#package-commands-and-examples)
-- [Development](#wrench-development)
 - [Resources](#page_facing_up-resources)
-- [Credit/Acknowledgment](#star2-creditacknowledgment)
 - [License](#lock-license)
 
 ##  :beginner: About
@@ -240,19 +238,33 @@ $a={\Sigma}{(I_x[i])^2}$, $b=2{\Sigma}{(I_x[i]}{I_y[i])}$, $c={\Sigma}{(I_y[i])^
    **Output**</br>
    ![alt text](ImageProcessingCPP/image7-Corners.jpg "Output-Corners")</br></br>
 
-##  :wrench: Development
-If you want other people to contribute to this project, this is the section, make sure you always add this.
-
 ### :notebook: Pre-Requisites
-List all the pre-requisites the system needs to develop this project.
-- A tool
-- B tool
+- A C++ compiler such as GCC or Clang
+- A text editor or integrated development environment (IDE) such as Visual Studio Code or Code::Blocks
 
 ##  :page_facing_up: Resources
-Add important resources here
-
-## :star2: Credit/Acknowledgment
-Credit the authors here.
-
+**Fundamentals of Image Processing**- By Ian T. Young ,Jan J. Gerbrands, Lucas J. van Vliet.</br>
+**Features and Boundaries Course**- By Columbia University</br>
+https://stackoverflow.com/
 ##  :lock: License
-Add a license here, or a link to it.
+MIT License
+
+Copyright (c) [2023] [Yuval Azachi]
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
