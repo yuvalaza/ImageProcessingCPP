@@ -84,6 +84,7 @@ Here is a summary of the methods provided by the MyMatrix class:
 | `Image(int rows, int cols,string path="None")` | Constructor that creates an image with specified rows and columns |
 | `Image(const MyMatrix& other, string path = "None")` | Constructor that creates an image from a matrix                   |
 | `setPath(string path)`                       | Sets the path of the image                                        |
+| `set_out_Path(string path,string input)`     | Adding the algorithm type for the output path                                        |
 | `setGmat(int rows, int cols)`                | Sets zero values matrix of the image with specified rows and columns      |
 | `setGmat(const MyMatrix& other)`             | Sets the matrix of the image from a matrix                         |
 | `setHist()`                                  | Calculates and sets the histogram of the image                    |
