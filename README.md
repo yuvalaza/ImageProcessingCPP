@@ -168,8 +168,22 @@ $a={\Sigma}{(I_x[i])^2}$, $b=2{\Sigma}{(I_x[i]}{I_y[i])}$, $c={\Sigma}{(I_y[i])^
 
 
   Harris has designed a simple expression, called the response function, that maps ${\lambda_{1}}$  and ${\lambda_{2}}$ to a single number R which help us to decide if we found a corner:</br>
-  ![image](https://user-images.githubusercontent.com/62516148/230616611-0dae78c5-6868-4a3c-8236-9dca35178e58.png)
-</br>
+  ![image](https://user-images.githubusercontent.com/62516148/230616611-0dae78c5-6868-4a3c-8236-9dca35178e58.png)</br>
+
+- **SIFT Detector**</br>
+    - Given an image, we first create the stack $S_{(x,y,\sigma)}$ of images by convolving the original image with Gaussians of increasing sigma</br>
+	- In order apply the NLoG operator we will find the difference between all pairs of the $S_{(x,y,\sigma)}$.</br>
+	- Finding the extrema in this stack of images.</br>
+	- In order to suppress the effects of noise, we can use a threshold to filter out weak extrema.</br>
+	
+    ![image](https://user-images.githubusercontent.com/62516148/230777161-d5b33e76-c644-4dba-bcee-448a9625d4f3.png)
+![image](https://user-images.githubusercontent.com/62516148/230776739-ce6c8b70-337d-460b-816f-e826754a673e.png) </br>
+    ![image](https://user-images.githubusercontent.com/62516148/230777054-ff2e6282-2f49-4a21-bd6b-55989d69ea60.png)</br>
+
+
+
+
+ 
 
 ###  :package: Commands And Examples
 - On this section you will find some examples of how to use some of the algorithms and  and their outputs as well.</br>
