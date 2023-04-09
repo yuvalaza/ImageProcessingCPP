@@ -180,7 +180,7 @@ Image Image::ContrastStretch()const {
 		
 	}
 	contrast._histogram = contrast.calHist();
-	contrast.set_out_Path("Constrast Stretch",this->getPath());
+	contrast.set_out_Path("Constrast_Stretch",this->getPath());
 	return contrast;
 
 }
@@ -255,7 +255,7 @@ Image Image::median(const int size)const {
 		}
 		
 	}
-	med.set_out_Path("Median filter", this->getPath());
+	med.set_out_Path("Median_filter", this->getPath());
 	return med;
 }
 

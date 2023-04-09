@@ -61,15 +61,6 @@
     <Image Include="image5.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="image7.jpg">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="image8.jpg">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="image7-Corners.jpg">
-      <Filter>Resource Files</Filter>
-    </Image>
     <Image Include="image2-SobelM.png">
       <Filter>Resource Files</Filter>
     </Image>
@@ -82,10 +73,16 @@
     <Image Include="image2-laplac.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="saltPe_noise-Median filter.png">
+    <Image Include="image2-Constrast_Stretch.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="image2-Constrast Stretch.png">
+    <Image Include="saltPe_noise-Median_filter.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Image7.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Image7-Corners.jpg">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

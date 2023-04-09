@@ -159,7 +159,7 @@
     <ClCompile Include="Source.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="image2-Constrast Stretch.png" />
+    <Image Include="image2-Constrast_Stretch.png" />
     <Image Include="image2-laplac.png" />
     <Image Include="image2-SobelM.png" />
     <Image Include="image2-sobelX.png" />
@@ -169,10 +169,9 @@
     <Image Include="image4.bmp" />
     <Image Include="image5.png" />
     <Image Include="image6.png" />
-    <Image Include="image7-Corners.jpg" />
-    <Image Include="image7.jpg" />
-    <Image Include="image8.jpg" />
-    <Image Include="saltPe_noise-Median filter.png" />
+    <Image Include="Image7-Corners.jpg" />
+    <Image Include="Image7.jpg" />
+    <Image Include="saltPe_noise-Median_filter.png" />
     <Image Include="saltPe_noise.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

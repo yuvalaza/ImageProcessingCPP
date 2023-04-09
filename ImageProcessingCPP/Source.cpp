@@ -35,10 +35,12 @@ void main()
 		//imag9.display();
 		//imag9.save();
 
-		Image imag("image2.png");
+		Image imag("Image7.jpg");
 		//Image imag3(imag.getGmat().getRows(), imag.getGmat().getCols());
 		//Image imag2 = imag.median(3);
-		//Image imag2 = imag.corners(5);
+		Image imag2 = imag.corners(3);
+		imag2.display();
+		imag2.save();
 		/*Image imagX = imag.edgeDetect("sobelX");
 		imagX.display();
 		imagX.save();
