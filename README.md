@@ -171,11 +171,60 @@ $a={\Sigma}{(I_x[i])^2}$, $b=2{\Sigma}{(I_x[i]}{I_y[i])}$, $c={\Sigma}{(I_y[i])^
 
   Harris has designed a simple expression, called the response function, that maps ${\lambda_{1}}$  and ${\lambda_{2}}$ to a single number R which help us to decide if we found a corner:</br>
   ![image](https://user-images.githubusercontent.com/62516148/230616611-0dae78c5-6868-4a3c-8236-9dca35178e58.png)
-
+</br>
 
 ###  :package: Commands And Examples
-- Commands to start the project.
--Few examples
+- On this section you will find some examples of how to use some of the algorithms and  and their outputs as well.</br>
+   **Reading an Image**</br>
+   ```
+   Image imag("image2.png");//by the Image source
+   ```
+   **Constrast Stretching**</br>
+   ```
+   Image image_cont = imag.ContrastStretch();
+   image_cont.display(); //displaying the image
+   image_cont.save(); //saving the image
+   ```
+   ![alt text](/path/to/image.png "Output")</br>
+
+   
+   **Median filter**</br>
+   ```
+   Image image_med = imag.median();
+   image_med.display();
+   image_med.save();
+   ```
+   ![alt text](/path/to/image.png "Output")</br>
+   
+   **Edge Detection**</br>
+   ```
+   Image imagX = imag.edgeDetect("sobelX"); // Sobel By dx
+   imagX.display();
+   imagX.save();
+   
+   Image imagY = imag.edgeDetect("sobelY");//Sobel By dy
+   imagY.display();
+   imagY.save();
+
+   Image imagM = imag.edgeDetect("sobelM");//Sobel magnitude
+   imagM.display();
+   imagM.save();
+   
+   Image imagL = imag.edgeDetect("laplac");
+   imagL.display();
+   imagL.save();
+   ```
+   ![alt text](/path/to/image.png "Output-SobelX")</br>
+   ![alt text](/path/to/image.png "Output-SobelY")</br>
+   ![alt text](/path/to/image.png "Output-SobelM")</br>
+   ![alt text](/path/to/image.png "Output-Laplac")</br>
+   
+   **Corner Detection**</br>
+   ![alt text](/path/to/image.png "Input")</br>
+   ```
+   Image imag2 = imag.corners();
+   ```
+   ![alt text](/path/to/image.png "Output")</br>
 
 ##  :wrench: Development
 If you want other people to contribute to this project, this is the section, make sure you always add this.
