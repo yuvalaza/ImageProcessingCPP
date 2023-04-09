@@ -28,9 +28,9 @@ Here is a summary of the methods provided by the MyMatrix class:
 
 | Property   | Description                                       |
 | ---------- | ------------------------------------------------- |
-| `_matrix`  | A pointer to a 2D array of `double` values that represents the matrix data. |
-| `_n`       | An integer that represents the number of rows in the matrix. |
-| `_m`       | An integer that represents the number of columns in the matrix. |
+| `double** _matrix`  | A pointer to a 2D array of `double` values that represents the matrix data. |
+| `int _n`       | An integer that represents the number of rows in the matrix. |
+| `int _m`       | An integer that represents the number of columns in the matrix. |
 
 
 | Method                            | Description                                                                     |
@@ -71,9 +71,9 @@ Here is a summary of the methods provided by the MyMatrix class:
 
 | Property    | Description                                          |
 | ----------- | ---------------------------------------------------- |
-| `_histogram` | A `MyMatrix` object representing the image histogram. |
-| `_path`     | A string representing the path to the image file.    |
-| `_gmat`     | A `MyMatrix` object representing the image matrix.   |
+| ` MyMatrix _histogram` | A `MyMatrix` object representing the image histogram. |
+| `string _path`     | A string representing the path to the image file.    |
+| `MyMatrix _gmat`     | A `MyMatrix` object representing the image matrix.   |
 
 
 | Method                                      | Description                                                       |
