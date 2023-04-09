@@ -188,7 +188,7 @@ $a={\Sigma}{(I_x[i])^2}$, $b=2{\Sigma}{(I_x[i]}{I_y[i])}$, $c={\Sigma}{(I_y[i])^
    image_cont.save(); //saving the image
    ```
     **Output**</br>
-   ![alt text](ImageProcessingCPP/image2-Constrast Stretch.png "Output-Contrast Stretching")</br></br>
+   ![alt text](ImageProcessingCPP/image2-Constrast_Stretch.png "Output-Contrast Stretching")</br></br>
    
    **Median filter**</br>
    **Input**</br>
@@ -200,7 +200,7 @@ $a={\Sigma}{(I_x[i])^2}$, $b=2{\Sigma}{(I_x[i]}{I_y[i])}$, $c={\Sigma}{(I_y[i])^
    image_med.save();
    ```
    **Output**</br>
-   ![alt text](ImageProcessingCPP/saltPe_noise-Median filter.png "Output-Median Filter")</br>
+   ![alt text](ImageProcessingCPP/saltPe_noise-Median_filter.png "Output-Median Filter")</br>
    
    **Edge Detection**</br>
    ```
