@@ -176,6 +176,8 @@ $a={\Sigma}{(I_x[i])^2}$, $b=2{\Sigma}{(I_x[i]}{I_y[i])}$, $c={\Sigma}{(I_y[i])^
 ###  :package: Commands And Examples
 - On this section you will find some examples of how to use some of the algorithms and  and their outputs as well.</br>
    **Reading an Image**</br>
+   **Input Image**</br>
+   ![alt text](ImageProcessingCPP/image2.png "Input Image")</br></br>
    ```
    Image imag("image2.png");//by the Image source
    ```
@@ -185,16 +187,20 @@ $a={\Sigma}{(I_x[i])^2}$, $b=2{\Sigma}{(I_x[i]}{I_y[i])}$, $c={\Sigma}{(I_y[i])^
    image_cont.display(); //displaying the image
    image_cont.save(); //saving the image
    ```
-   ![alt text](/path/to/image.png "Output")</br>
-
+    **Output**</br>
+   ![alt text](ImageProcessingCPP/image2-Constrast Stretch.png "Output-Contrast Stretching")</br></br>
    
    **Median filter**</br>
+   **Input**</br>
+   ![alt text](ImageProcessingCPP/saltPe_noise.png "Input-saltPe_noise")</br></br>
+   
    ```
    Image image_med = imag.median();
    image_med.display();
    image_med.save();
    ```
-   ![alt text](/path/to/image.png "Output")</br>
+   **Output**</br>
+   ![alt text](ImageProcessingCPP/saltPe_noise-Median filter.png "Output-Median Filter")</br>
    
    **Edge Detection**</br>
    ```
@@ -225,11 +231,14 @@ $a={\Sigma}{(I_x[i])^2}$, $b=2{\Sigma}{(I_x[i]}{I_y[i])}$, $c={\Sigma}{(I_y[i])^
    ![alt text](ImageProcessingCPP/image2-laplac.png "Output-Laplac")</br></br>
    
    **Corner Detection**</br>
-   ![alt text](/path/to/image.png "Input")</br>
+   **Input**</br>
+   ![alt text](ImageProcessingCPP/image7.jpg "Input-Corners")</br></br>
+   
    ```
    Image imag2 = imag.corners();
    ```
-   ![alt text](/path/to/image.png "Output")</br>
+   **Output**</br>
+   ![alt text](ImageProcessingCPP/image7-Corners.jpg "Output-Corners")</br></br>
 
 ##  :wrench: Development
 If you want other people to contribute to this project, this is the section, make sure you always add this.
