@@ -20,7 +20,7 @@ Image::Image(const string path) {
 	}
 	this->_gmat = gray;
 	this->_histogram=this->calHist();
-	this->_path = path;
+	this->setPath(path);
 }
 Image:: Image(int rows, int cols, string path) {
 	this->setGmat(rows, cols);
@@ -40,7 +40,11 @@ void Image::setGmat(const MyMatrix& other) {
 	this->_gmat = other;
 	//this->calHist();
 }
+void Image:: set_out_Path(string type,string input) {
+	int pos = input.find('.');
+	this->setPath(input.substr(0, pos) +"-"+type+ "." + input.substr(pos + 1));
 
+}
 void Image::setHist() {
 	if (this->_path == "None") {
 		this->_histogram.setMatrix(1, 256);
@@ -80,7 +84,23 @@ void Image::display()const {
 	waitKey(0);
 	destroyWindow(windowName);
 }
+void Image::save()const {
+	Mat new_image=this->getGmat().getCV_mat();
+	new_image.convertTo(new_image, CV_32F);
+	String windowName= this->_path;;
+	namedWindow(windowName);
+	if (this->getPath() != "None") {
+		imwrite(this->getPath(), new_image);
+	}
+	else {
+		imwrite(this->getPath() + ".png", new_image);
+	}
+	
+	waitKey(0);//wait till user press any key
+	destroyWindow(windowName);//close the window and release allocate memory//
+	cout << "Image is saved successfully" << endl;
 
+}
 void Image::showHist()const {
 	double normalize_factor = 100;
 	String windowName;
@@ -160,7 +180,7 @@ Image Image::ContrastStretch()const {
 		
 	}
 	contrast._histogram = contrast.calHist();
-	contrast.setPath(this->getPath() + "-ContrastStretch");
+	contrast.set_out_Path("Constrast Stretch",this->getPath());
 	return contrast;
 
 }
@@ -185,7 +205,7 @@ Image Image::equalize()const {
 	cout << (cdf[0][int(this->_gmat[0][408])]) << endl;
 	cout << equal._gmat[0][408] << endl;
 	equal._histogram = equal.calHist();
-	equal.setPath(this->getPath() + "-equalized");
+	equal.set_out_Path("Equalize", this->getPath());
 	return equal;
 
 
@@ -193,7 +213,7 @@ Image Image::equalize()const {
 
 Image Image::median(const int size)const {
 	int factor = size / 2;
-	int median;
+	int median,pos;
 	int index = 0;
 	int rows = this->getGmat().getRows();
 	int cols = this->getGmat().getCols();
@@ -235,6 +255,7 @@ Image Image::median(const int size)const {
 		}
 		
 	}
+	med.set_out_Path("Median filter", this->getPath());
 	return med;
 }
 
@@ -260,21 +281,25 @@ void Image::scale() {
 }
 
 Image Image::edgeDetect(const string& type, int size, double sigma)const {
+	//for set the new image path
 	if (size != 3 && size != 5) {
 		throw ErrorObject(INVALID_MASK_SIZE_NUM, INVALID_MASK_SIZE, LINK1);
 	}
 	if (type == "sobelM") {
 		Image resM(SobelMag(this->getGmat(), size));
+		resM.set_out_Path("sobelM", this->getPath());
 		return resM;
 
 	}
 	if (type == "canny") {
 		Image resC(SobelMag(conv(this->getGmat(),setGaus(size, sigma)),size));
+		resC.set_out_Path("canny", this->getPath());
 		return resC;
 
 	}
 	MyMatrix mask = initMask(type,size);
 	Image res(conv(this->getGmat(), mask));
+	res.set_out_Path(type, this->getPath());
 	return res;
 }
 
@@ -286,8 +311,6 @@ Image Image::corners(int size, double threshold_value) {
 	Image blur = this->gausBlur(5,0.79);
 	MyMatrix dx(conv(blur.getGmat(),setSobel("sobelX")));
 	MyMatrix dy(conv(blur.getGmat(), setSobel("sobelY")));
-	/*dx.cvNorm();
-	dy.cvNorm();*/
 	
 	for (int i = 0; i < rows; i++) {
 		for (int j = 0; j < cols; j++) {
@@ -323,7 +346,68 @@ Image Image::corners(int size, double threshold_value) {
 			}
 		
 		}
+	res.set_out_Path("Corners", this->getPath());
 	return res;
 	}
-	
+Image Image:: sift(double s, int gausSize, double sigma,int setSize,int window_Size) {
+	int count = 0;
+	int rows = this->getGmat().getRows();
+	int cols = this->getGmat().getCols();
+	MyMatrix temp(rows, cols);
+	Image res(this->getRows(), this->getCols());
+	MyMatrix* gauSet = new MyMatrix[setSize];
+	initGausSet(this->getGmat(),gauSet, s, gausSize, sigma, setSize);
+	//postSet is the set of the Difference of Gaussians -(DoG), which equal to Normalized Laplacian of Gaussian-(NLoG)
+	MyMatrix* postSet = new MyMatrix[setSize/2];
+	MyMatrix* maxSet = new MyMatrix[setSize / 2];
+	for (int i = 0; i < (setSize / 2); i++) {
+		postSet[i] = gauSet[count + 1] - gauSet[count];
+		maxSet[i] = postSet[i].localMax(window_Size);
+		count += 2;
+	}
+	//for test
+	res = this->drawCirc(maxSet,setSize/2,2,sigma*20);
+	//free memory allocation
+	return res;
+}
 
+Image Image::drawCirc(MyMatrix* maxSet,int setSize, int thickness, double radius,int factor)const {
+	double threshold = 0;
+	int rows = this->getRows();
+	int cols = this->getCols();
+	MyMatrix temp(rows, cols);
+	Mat res = this->getGmat().getCV_mat();
+	Image final_image(rows, cols);
+	int count = 1;
+	double new_radius = 0;
+	Scalar color = Scalar(0);
+	res.convertTo(res, CV_8U);
+	
+	for (int k = 0; k < setSize; k++) {
+		temp = maxSet[k];
+		threshold = (temp.max())*0.7;
+		for (int i = 0; i < rows; i++) {
+			for (int j = 0; j < cols; j++) {
+				//cout << temp[i][j] << endl;
+				if (temp[i][j]>=threshold) {
+					Point center(i, j);
+					new_radius = pow(factor, count) * radius;
+					circle(res, center, new_radius, color, 1);
+				
+				}
+				
+			}
+		}
+		count =count+ 2;
+	}
+	//res.convertTo(res, CV_8U);
+	
+	namedWindow(this->_path);
+	imshow(this->_path, res);
+	waitKey(0);
+	destroyWindow(this->_path);
+	
+	//MyMatrix final(res);
+	//final_image._gmat = final;
+	return final_image;
+}

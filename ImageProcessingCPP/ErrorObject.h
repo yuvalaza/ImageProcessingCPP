@@ -16,6 +16,10 @@ using namespace std;
 #define INVALID_MASK_SIZE_NUM 5
 #define UNDEFINED_MASK_TYPE "Undefined type"
 #define UNDEFINED_MASK_TYPE_NUM 6
+#define INVALID_GAUS_SET_SIZE "The Guassian set size must be an even number "
+#define INVALID_GAUS_SET_SIZE_NUM 7
+#define INVALID_WINDOW_SIZE "The window's size cant be larger than the matrix rows/cols "
+#define INVALID_WINDOW_SIZE_NUM 8
 
 
 

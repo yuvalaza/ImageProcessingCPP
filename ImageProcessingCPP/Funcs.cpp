@@ -125,7 +125,6 @@ MyMatrix setGaus(int size, double sigma) {
 	for (int i = 0; i < size; i++) {
 		for (int j = 0; j < size; j++) {
 			kernel[i][j] = factor * exp((-0.5) * ((pow(i-k, 2) + pow(j-m, 2)) / pow(sigma, 2)));
-			cout << kernel[i][j] << endl;
 		}
 	}
 	return kernel;
@@ -146,7 +145,7 @@ MyMatrix conv(const MyMatrix& matA, const MyMatrix& filter) {
 				if (i - n >= 0) {
 					for (int m = 0; m < h_cols; m++) {
 						if (j - m >= 0) {
-							sum += matA[i - n][j - m] * filter[h_rows-1-n][h_cols-1-m];
+							sum += matA[i - n][j - m] * filter[n][m];
 						}
 					}
 				}
@@ -164,6 +163,20 @@ MyMatrix conv(const MyMatrix& matA, const MyMatrix& filter) {
 
 	return res;
 }
+void initGausSet(const MyMatrix& input, MyMatrix*& set, double s, int gausSize, double sigma, int setSize) {
+	double factor = 0;
+	if (setSize%2!=0) {
+		throw ErrorObject(INVALID_GAUS_SET_SIZE_NUM,INVALID_GAUS_SET_SIZE, LINK1);
+	}
+
+	for (int i = 0; i < setSize; i++) {
+		factor = sigma * (pow(s, i));
+		set[i] = conv(input, setGaus(gausSize,factor));
+		
+	}
+
+}
+
 
 MyMatrix getHaar(string type, int width,double W_L_ratio) {
 	int length = width * W_L_ratio;

@@ -18,3 +18,5 @@ static MyMatrix setDiagHaar(int width, int length);
 static MyMatrix setDoubHoizHaar(int width, int length);
 static MyMatrix setDoubVertHaar(int width, int length);
 MyMatrix calcHaar(const MyMatrix& input, string type, int width, double W_L_ratio = 2);
+//Initializing a set of Gaussian kernels with sigma=sigma*(s^i) as i is the index of a specific kernel in the set
+void initGausSet(const MyMatrix& input,MyMatrix*& set, double s = 1.2, int gausSize = 15, double sigma = 1, int setSize = 10);

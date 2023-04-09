@@ -46,6 +46,19 @@ MyMatrix::MyMatrix(const MyMatrix& other) {
 
 	}
 }
+MyMatrix::MyMatrix(const Mat& other) {
+	int rows = other.rows;
+	int cols = other.cols;
+	this->_matrix = new double* [rows];
+	for (int i = 0; i < rows; i++) {
+		this->_matrix[i] = new double[cols];
+		for (int j = 0; j < cols; j++)
+		{
+			this->_matrix[i][j] = other.at<double>(i, j);
+		}
+	}
+}
+
 //Construct mXn matrix
 MyMatrix::MyMatrix(int n,int m) {
 	this->setMatrix(n, m);
@@ -93,6 +106,60 @@ double MyMatrix::min()const {
 		}
 	}
 	return min;
+}
+MyMatrix MyMatrix:: localMax(int window_Size)const {
+	if (window_Size > this->getRows() || window_Size > this->getCols()) {
+		throw ErrorObject(INVALID_WINDOW_SIZE_NUM, INVALID_WINDOW_SIZE, LINK1);
+	}
+	//saving the max location
+	int pointX = 0, pointY = 0;
+	double max = 0;
+	double global_max = 0;
+	int rows = this->getRows();
+	int cols = this->getCols();
+	MyMatrix res(rows, cols);
+	for (int i = 0; i < rows; i++) {
+		for (int j = 0; j < cols; j++) {
+			if (i + window_Size <= rows) {
+				for (int m = i; m < i + window_Size; m++) {
+					if (i + window_Size <= cols) {
+						for (int k = j; k < j + window_Size; k++) {
+							if (this->_matrix[m][k] > max) {
+								max = this->_matrix[m][k];
+								pointX = m;
+								pointY = k;
+							}
+							if (max > global_max) {
+								global_max = max;
+							}
+						}
+					}
+				}
+				
+				
+			}
+			if (max != 0) {
+				res[pointX][pointY] = max;
+				//In order to deal with the overlap and get the real local max
+				clean_localMax(res, max, window_Size, i, j,rows,cols);
+				max = 0;
+			}
+		}
+	}
+	cout << global_max << endl;
+	return res;
+}
+void MyMatrix:: clean_localMax(MyMatrix& res, double max, int window_Size, int indexX, int indexY,int rows,int cols)const {
+	if (indexX + window_Size <= rows && indexY + window_Size <= cols) {
+		for (int n = indexX; n < indexX + window_Size; n++) {
+
+			for (int t = indexY; t < indexY + window_Size; t++) {
+				if (res[n][t] < max && res[n][t] != 0) {
+					res[n][t] = 0;
+				}
+			}
+		}
+	}
 }
 
 
@@ -407,3 +474,19 @@ MyMatrix MyMatrix:: operator-(const MyMatrix& other) const {
 
 	}
  }
+ Mat MyMatrix::getCV_mat() {
+	 int rows = this->getRows();
+	 int cols = this->getCols();
+	 Mat new_mat(rows, cols, CV_64F);
+	 for (int i = 0; i < rows; i++) {
+		 for (int j = 0; j < cols; j++)
+		 {
+			 new_mat.at<double>(i, j) = this->_matrix[i][j];
+		 }
+
+	 }
+	 return new_mat;
+ }
+ 
+	
+ 

@@ -4,8 +4,10 @@ using namespace std;
 
 void main() 
 {
+	//cout << setGaus(15,2.38) << endl;
 	/*Image imag9("image2.png");
-	imag9.gausBlur(11,2).display();*/
+	(imag9).display();
+	(imag9.gausBlur(15, 5)).display();*/
 	//cout << getHaar("DoubleH", 6,0.5) << endl;
 	/*Image imag3("image2.png");
 	imag3.display();
@@ -14,34 +16,62 @@ void main()
 	
 
 	try {
-		Image imag3("image8.jpg");
+		//Image imag3("image2.png");
+		//Image imagC(imag3.sift());
+		//imagC.display();
 		/*MyMatrix mat3 = setSobel(3);
 		cout << mat3 << endl;
 		*/
 		//MyMatrix mat3(3, 3,rep);
 		//cin >> mat3;
 		//Image imag4(conv(imag3.getGmat(), mat3));
-		//Image imag6(imag3.gausBlur(5,2));
+		//Image imag6(imag3.gausBlur(15,2.5));
 		//imag6.display();
 		//Image imag4 = imag3.edgeDetect("sobelX", 3);
 		//imag4.display();
 		//imag4.display();
-		Image imag7(imag3.corners(3));
-		imag7.display();
+		//Image imag7(imag3.corners(3));
+		//Image imag9(imag3.edgeDetect("sobelM"));
+		//imag9.display();
+		//imag9.save();
 
-		Image imag("saltPe_noise.png");
-		Image imag2(imag.getGmat().getRows(), imag.getGmat().getCols());
+		Image imag("image2.png");
 		//Image imag3(imag.getGmat().getRows(), imag.getGmat().getCols());
+		//Image imag2 = imag.median(3);
+		//Image imag2 = imag.corners(5);
+		/*Image imagX = imag.edgeDetect("sobelX");
+		imagX.display();
+		imagX.save();
+		
+		Image imagY = imag.edgeDetect("sobelY");
+		imagY.display();
+		imagY.save();
 
-		imag2 = imag.median(3);
+		Image imagM = imag.edgeDetect("sobelM");
+		imagM.display();
+		imagM.save();
+		*/
+		/*Image imagL = imag.edgeDetect("laplac");
+		imagL.display();
+		imagL.save();*/
+
+		/*Image image_med = imag.median();
+		image_med.display();
+		image_med.save();*/
+		
+		/*Image image_cont = imag.ContrastStretch();
+		image_cont.display();
+		image_cont.save();*/
+		
+		
 		//imag3 = imag.equalize();
 
-		imag.showHist();
-		imag2.showHist();
+		//imag.showHist();
+		//imag2.showHist();
 		//imag3.showHist();
 
-		imag.display();
-		imag2.display();
+		
+		//imag2.display();
 		//imag3.display();
 	}
 	

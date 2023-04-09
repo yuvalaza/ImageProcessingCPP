@@ -5,6 +5,7 @@
 #include<math.h>
 #include <opencv2/imgproc/imgproc.hpp>
 #include <opencv2/highgui/highgui.hpp>
+
 #include<algorithm>
 using namespace cv;
 using namespace std;
@@ -23,6 +24,7 @@ public:
 	MyMatrix();
 	MyMatrix(int n, int m);
 	MyMatrix(const MyMatrix& other);
+	MyMatrix(const Mat& other);
 	~MyMatrix();
 	void setMatrix(int n = 3, int m = 3);
 	int getRows()const { return this->_n; }
@@ -33,8 +35,13 @@ public:
 	MyMatrix T()const;
 	MyMatrix abs()const;
 	MyMatrix integ()const;
+	MyMatrix localMax(int window_Size = 3)const;
+	//In order to deal with the overlap and get the real local max matrix;
+	void clean_localMax(MyMatrix& res,double max, int window_Size,int indexX, int indexY, int rows, int cols)const;
 	void sort();
 	void cvNorm();
+	Mat getCV_mat();
+	
 
 
 
