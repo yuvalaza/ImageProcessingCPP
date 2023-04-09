@@ -20,6 +20,7 @@ Welcome to my CPP project, which focuses on implementing various image processin
 - [License](#lock-license)
 
 ##  :beginner: About
+- At this section I will introduce the MyMatrix and Image classes, apart of them there are other mathematical and helpful functions in the Funcs.h file, such as Convolution, Local Max, Gaussian Set initializer and more.</br>
 
 ###  MyMatrix class overview
 At this project I implemented every algorithm from scratch, In order to do that I built the “MyMatrix” class. By providing a flexible and efficient matrix data structure, the class simplifies the process of implementing complex algorithms that require matrix operations.
