@@ -16,12 +16,11 @@ Welcome to my CPP project, which focuses on implementing various image processin
   - [Installation](#electric_plug-installation)
   - [Theory And Algorithm's Description](#bulb-theory-and-algorithms-description)
   - [Commands And Examples](#package-commands-and-examples)
-- [Development](#wrench-development)
 - [Resources](#page_facing_up-resources)
-- [Credit/Acknowledgment](#star2-creditacknowledgment)
 - [License](#lock-license)
 
 ##  :beginner: About
+- At this section I will introduce the MyMatrix and Image classes, apart of them there are other mathematical and helpful functions in the Funcs.h file, such as Convolution, Local Max, Gaussian Set initializer and more.</br>
 
 ###  MyMatrix class overview
 At this project I implemented every algorithm from scratch, In order to do that I built the “MyMatrix” class. By providing a flexible and efficient matrix data structure, the class simplifies the process of implementing complex algorithms that require matrix operations.
@@ -29,9 +28,9 @@ Here is a summary of the methods provided by the MyMatrix class:
 
 | Property   | Description                                       |
 | ---------- | ------------------------------------------------- |
-| `_matrix`  | A pointer to a 2D array of `double` values that represents the matrix data. |
-| `_n`       | An integer that represents the number of rows in the matrix. |
-| `_m`       | An integer that represents the number of columns in the matrix. |
+| `double** _matrix`  | A pointer to a 2D array of `double` values that represents the matrix data. |
+| `int _n`       | An integer that represents the number of rows in the matrix. |
+| `int _m`       | An integer that represents the number of columns in the matrix. |
 
 
 | Method                            | Description                                                                     |
@@ -72,9 +71,9 @@ Here is a summary of the methods provided by the MyMatrix class:
 
 | Property    | Description                                          |
 | ----------- | ---------------------------------------------------- |
-| `_histogram` | A `MyMatrix` object representing the image histogram. |
-| `_path`     | A string representing the path to the image file.    |
-| `_gmat`     | A `MyMatrix` object representing the image matrix.   |
+| ` MyMatrix _histogram` | A `MyMatrix` object representing the image histogram. |
+| `string _path`     | A string representing the path to the image file.    |
+| `MyMatrix _gmat`     | A `MyMatrix` object representing the image matrix.   |
 
 
 | Method                                      | Description                                                       |
@@ -170,12 +169,28 @@ $a={\Sigma}{(I_x[i])^2}$, $b=2{\Sigma}{(I_x[i]}{I_y[i])}$, $c={\Sigma}{(I_y[i])^
 
 
   Harris has designed a simple expression, called the response function, that maps ${\lambda_{1}}$  and ${\lambda_{2}}$ to a single number R which help us to decide if we found a corner:</br>
-  ![image](https://user-images.githubusercontent.com/62516148/230616611-0dae78c5-6868-4a3c-8236-9dca35178e58.png)
-</br>
+  ![image](https://user-images.githubusercontent.com/62516148/230616611-0dae78c5-6868-4a3c-8236-9dca35178e58.png)</br>
+
+- **SIFT Detector**</br>
+    - Given an image, we first create the stack $S_{(x,y,\sigma)}$ of images by convolving the original image with Gaussians of increasing sigma</br>
+	- In order apply the NLoG operator we will find the difference between all pairs of the $S_{(x,y,\sigma)}$.</br>
+	- Finding the extrema in this stack of images.</br>
+	- In order to suppress the effects of noise, we can use a threshold to filter out weak extrema.</br>
+	
+    ![image](https://user-images.githubusercontent.com/62516148/230777161-d5b33e76-c644-4dba-bcee-448a9625d4f3.png)
+![image](https://user-images.githubusercontent.com/62516148/230776739-ce6c8b70-337d-460b-816f-e826754a673e.png) </br>
+    ![image](https://user-images.githubusercontent.com/62516148/230777054-ff2e6282-2f49-4a21-bd6b-55989d69ea60.png)</br>
+
+
+
+
+ 
 
 ###  :package: Commands And Examples
 - On this section you will find some examples of how to use some of the algorithms and  and their outputs as well.</br>
    **Reading an Image**</br>
+   **Input Image**</br>
+   ![alt text](ImageProcessingCPP/image2.png "Input Image")</br></br>
    ```
    Image imag("image2.png");//by the Image source
    ```
@@ -185,16 +200,20 @@ $a={\Sigma}{(I_x[i])^2}$, $b=2{\Sigma}{(I_x[i]}{I_y[i])}$, $c={\Sigma}{(I_y[i])^
    image_cont.display(); //displaying the image
    image_cont.save(); //saving the image
    ```
-   ![alt text](/path/to/image.png "Output")</br>
-
+    **Output**</br>
+   ![alt text](ImageProcessingCPP/image2-Constrast_Stretch.png "Output-Contrast Stretching")</br></br>
    
    **Median filter**</br>
+   **Input**</br>
+   ![alt text](ImageProcessingCPP/saltPe_noise.png "Input-saltPe_noise")</br></br>
+   
    ```
    Image image_med = imag.median();
    image_med.display();
    image_med.save();
    ```
-   ![alt text](/path/to/image.png "Output")</br>
+   **Output**</br>
+   ![alt text](ImageProcessingCPP/saltPe_noise-Median_filter.png "Output-Median Filter")</br>
    
    **Edge Detection**</br>
    ```
@@ -225,25 +244,42 @@ $a={\Sigma}{(I_x[i])^2}$, $b=2{\Sigma}{(I_x[i]}{I_y[i])}$, $c={\Sigma}{(I_y[i])^
    ![alt text](ImageProcessingCPP/image2-laplac.png "Output-Laplac")</br></br>
    
    **Corner Detection**</br>
-   ![alt text](/path/to/image.png "Input")</br>
+   **Input**</br>
+   ![alt text](ImageProcessingCPP/image7.jpg "Input-Corners")</br></br>
+   
    ```
    Image imag2 = imag.corners();
    ```
-   ![alt text](/path/to/image.png "Output")</br>
-
-##  :wrench: Development
-If you want other people to contribute to this project, this is the section, make sure you always add this.
+   **Output**</br>
+   ![alt text](ImageProcessingCPP/image7-Corners.jpg "Output-Corners")</br></br>
 
 ### :notebook: Pre-Requisites
-List all the pre-requisites the system needs to develop this project.
-- A tool
-- B tool
+- A C++ compiler such as GCC or Clang
+- A text editor or integrated development environment (IDE) such as Visual Studio Code or Code::Blocks
 
 ##  :page_facing_up: Resources
-Add important resources here
-
-## :star2: Credit/Acknowledgment
-Credit the authors here.
-
+**Fundamentals of Image Processing**- By Ian T. Young ,Jan J. Gerbrands, Lucas J. van Vliet.</br>
+**Features and Boundaries Course**- By Columbia University</br>
+https://stackoverflow.com/
 ##  :lock: License
-Add a license here, or a link to it.
+MIT License
+
+Copyright (c) [2023] [Yuval Azachi]
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
