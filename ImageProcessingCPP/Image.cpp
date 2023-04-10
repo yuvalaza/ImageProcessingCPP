@@ -368,6 +368,9 @@ Image Image:: sift(double s, int gausSize, double sigma,int setSize,int window_S
 	//for test
 	res = this->drawCirc(maxSet,setSize/2,2,sigma*20);
 	//free memory allocation
+	delete[]gauSet;
+	delete[]postSet;
+	delete[]maxSet;
 	return res;
 }
 
@@ -409,5 +412,6 @@ Image Image::drawCirc(MyMatrix* maxSet,int setSize, int thickness, double radius
 	
 	//MyMatrix final(res);
 	//final_image._gmat = final;
+
 	return final_image;
 }

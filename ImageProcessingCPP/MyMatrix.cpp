@@ -122,7 +122,7 @@ MyMatrix MyMatrix:: localMax(int window_Size)const {
 		for (int j = 0; j < cols; j++) {
 			if (i + window_Size <= rows) {
 				for (int m = i; m < i + window_Size; m++) {
-					if (i + window_Size <= cols) {
+					if (j + window_Size <= cols) {
 						for (int k = j; k < j + window_Size; k++) {
 							if (this->_matrix[m][k] > max) {
 								max = this->_matrix[m][k];
