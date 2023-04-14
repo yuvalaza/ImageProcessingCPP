@@ -61,6 +61,8 @@
    
    ```
    Image imag2 = imag.corners();
+   imag2.display();
+   imag2.save();
    ```
    **Output**</br>
    ![alt text](ImageProcessingCPP/image7-Corners.jpg "Output-Corners")</br></br>
