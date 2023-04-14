@@ -1,5 +1,4 @@
-**Commands And Examples**
-- On this section you will find some examples of how to use some of the algorithms and  and their outputs as well.</br></br>
+**Commands And Examples**</br></br>
    **Reading an Image**</br></br>
    **Input Image**</br>
    ![alt text](ImageProcessingCPP/image2.png "Input Image")</br></br>
@@ -12,7 +11,7 @@
    image_cont.display(); //displaying the image
    image_cont.save(); //saving the image
    ```
-    **Output**</br>
+   **Output**</br>
    ![alt text](ImageProcessingCPP/image2-Constrast_Stretch.png "Output-Contrast Stretching")</br></br>
    
    **Median filter**</br>
