@@ -40,20 +40,21 @@ Here is a summary of the methods provided by the MyMatrix class:
 | `MyMatrix(const MyMatrix& other)` | Copy constructor. Creates a new matrix that is a copy of `other`.               |
 | `MyMatrix(const Mat& other)`      | Creates a new matrix that is a copy of the given `cv::Mat` object.              |
 | `~MyMatrix()`                     | Destructor. Deletes dynamically allocated memory.                               |
-| `setMatrix(int n = 3, int m = 3)` | Sets zero values matrix of size `n x m` . Default is 3x3.                                    |
-| `getRows() const`                 | Returns the number of rows in the matrix.                                       |
-| `getCols() const`                 | Returns the number of columns in the matrix.                                    |
-| `max() const`                     | Returns the maximum value in the matrix.                                        |
-| `min() const`                     | Returns the minimum value in the matrix.                                        |
-| `mul(const MyMatrix& other) const`| Returns the matrix product of `this` and `other`.                               |
-| `T() const`                       | Returns the transpose of the matrix.                                            |
-| `abs() const`                     | Returns a new matrix with the absolute values of each element.                  |
-| `integ() const`                   | Returns a new matrix where each element is the cumulative sum of the elements above and to the left of it. |
-| `localMax(int window_Size = 3) const` | Returns a new matrix with local maxima in every window by the window size.                |
-| `clean_localMax(MyMatrix& res,double max, int window_Size,int indexX, int indexY, int rows, int cols) const` | Private helper function to clean local maxima. |
-| `sort()`                          | Sorts every row of the matrix in ascending order.                                            |
-| `cvNorm()`                        | Normalizes the matrix so that its sum of squares is equal to 1.                |
-| `getCV_mat()`                     | Returns the matrix as a `cv::Mat` object.                                       |
+| `void setMatrix(int n = 3, int m = 3)` | Sets zero values matrix of size `n x m` . Default is 3x3.                                    |
+| `int getRows() const`                 | Returns the number of rows in the matrix.                                       |
+| `int getCols() const`                 | Returns the number of columns in the matrix.                                    |
+| `double max() const`                     | Returns the maximum value in the matrix.                                        |
+| `double min() const`                     | Returns the minimum value in the matrix.                                        |
+| `MyMatrix mul(const MyMatrix& other) const`| Returns the matrix product of `this` and `other`.                               |
+| `MyMatrix T() const`                       | Returns the transpose of the matrix.                                            |
+| `MyMatrix abs() const`                     | Returns a new matrix with the absolute values of each element.                  |
+| `MyMatrix integ() const`                   | Returns a new matrix where each element is the cumulative sum of the elements above and to the left of it. |
+| `MyMatrix localMax(int window_Size = 3) const` | Returns a new matrix with local maxima in every window by the window size.                |
+| `void clean_localMax(MyMatrix& res,double max, int window_Size,int indexX, int indexY, int rows, int cols) const` | Private helper function to clean local maxima. |
+| `void sort()`                          | Sorts every row of the matrix in ascending order by Merge Sort Algorithm.                                            |
+| `void cvNorm()`                        | Normalizes the matrix so that its sum of squares is equal to 1.                |
+| `Mat getCV_mat()`                     | Returns the matrix as a `cv::Mat` object.                                       |
+| `void minMax(double factor=100);`                     | Min Max Normalization                                       |
 | `operator=(const MyMatrix& other)`| Assignment operator. Copies the matrix from `other` to `this`.                 |
 | `operator==(const MyMatrix& other) const` | Equality operator. Returns `true` if `this` is equal to `other`.          |
 | `operator+(const MyMatrix& other) const` | Addition operator. Returns the sum of `this` and `other`.                |
@@ -71,41 +72,40 @@ Here is a summary of the methods provided by the MyMatrix class:
 
 | Property    | Description                                          |
 | ----------- | ---------------------------------------------------- |
-| ` MyMatrix _histogram` | A `MyMatrix` object representing the image histogram. |
+| `MyMatrix _histogram` | A `MyMatrix` object representing the image histogram. |
 | `string _path`     | A string representing the path to the image file.    |
 | `MyMatrix _gmat`     | A `MyMatrix` object representing the image matrix.   |
 
 
 | Method                                      | Description                                                       |
 | ------------------------------------------- | ----------------------------------------------------------------- |
-| `calHist()const`                             | Calculates and returns the histogram of the image                |
+| `MyMatrix calHist()const`                             | Calculates and returns the histogram of the image                |
 | `Image(const string file_name)`              | Constructor that reads an image from a file                       |
 | `Image(int rows, int cols,string path="None")` | Constructor that creates an image with specified rows and columns |
 | `Image(const MyMatrix& other, string path = "None")` | Constructor that creates an image from a matrix                   |
-| `setPath(string path)`                       | Sets the path of the image                                        |
-| `set_out_Path(string path,string input)`     | Adding the algorithm type for the output path                                        |
-| `setGmat(int rows, int cols)`                | Sets zero values matrix of the image with specified rows and columns      |
-| `setGmat(const MyMatrix& other)`             | Sets the matrix of the image from a matrix                         |
-| `setHist()`                                  | Calculates and sets the histogram of the image                    |
-| `scale()`                                    | Scales the image by MinMax Norm                                       |
-| `getRows()const`                             | Returns the number of rows in the image                            |
-| `getCols()const`                             | Returns the number of columns in the image                         |
-| `getHist()const`                             | Returns the histogram of the image                                 |
-| `getGmat()const`                             | Returns the matrix of the image                                    |
-| `getPath()const`                             | Returns the path of the image                                      |
-| `display()const`                             | Displays the image                                                |
-| `save()const`                                | Saves the image                                                    |
-| `getHistPercentile(const int p)const`        | Returns the p-th percentile in the histogram                       |
-| `showHist()const`                            | Displays the histogram of the image                                |
-| `drawHist(const vector<double>& data, Mat3b& dst, int binSize = 3, int height = 0)const` | Draws the histogram of the image |
-| `ContrastStretch()const`                     | Applies contrast stretching to the image                            |
-| `equalize()const`                            | Applies histogram equalization to the image                         |
-| `median(const int size = 3)const`            | Applies median filtering to the image with specified kernel size  |
-| `gausBlur(const int size = 3, double const sigma = 0.477)const` | Applies Gaussian blur to the image with specified kernel size and sigma |
-| `edgeDetect(const string& type,int size=3,double sigma=0.5)const` | Detects edges in the image using the specified method-SobelX/SobelY/Sobel/Laplac/Canny |
-| `corners(int size, double threshold_value= 5.1 * (pow(10, 7)))` | Finds corners in the image using the specified method |
-| `sift(double s=1.2, int gausSize = 15, double sigma = 1,int setSize=10, int window_Size=100)` | Applies SIFT feature extraction to the image |
-| `drawCirc(MyMatrix* maxSet,int setSize,int thickness,double radius, int factor=1.2)const` | Draws circles around the detected features in the image |
+| `void setPath(string path)`                       | Sets the path of the image                                        |
+| `void set_out_Path(string path,string input)`     | Adding the algorithm type for the output path                                        |
+| `void setGmat(int rows, int cols)`                | Sets zero values matrix of the image with specified rows and columns      |
+| `void setGmat(const MyMatrix& other)`             | Sets the matrix of the image from a matrix                         |
+| `void setHist()`                                  | Calculates and sets the histogram of the image                    |
+| `int getRows()const`                             | Returns the number of rows in the image                            |
+| `int getCols()const`                             | Returns the number of columns in the image                         |
+| `MyMatrix getHist()const`                             | Returns the histogram of the image                                 |
+| `MyMatrix getGmat()const`                             | Returns the matrix of the image                                    |
+| `string getPath()const`                             | Returns the path of the image                                      |
+| `void display()const`                             | Displays the image                                                |
+| `void save()const`                                | Saves the image                                                    |
+| `int getHistPercentile(const int p)const`        | Returns the p-th percentile in the histogram                       |
+| `void showHist()const`                            | Displays the histogram of the image                                |
+| `void drawHist(const vector<double>& data, Mat3b& dst, int binSize = 3, int height = 0)const` | Draws the histogram of the image |
+| `Image ContrastStretch()const`                     | Applies contrast stretching to the image                            |
+| `Image equalize()const`                            | Applies histogram equalization to the image                         |
+| `Image median(const int size = 3)const`            | Applies median filtering to the image with specified kernel size  |
+| `Image gausBlur(const int size = 3, double const sigma = 0.477)const` | Applies Gaussian blur to the image with specified kernel size and sigma |
+| `Image edgeDetect(const string& type,int size=3,double sigma=0.5)const` | Detects edges in the image using the specified method-SobelX/SobelY/Sobel/Laplac/Canny |
+| `Image corners(int size, double threshold_value= 5.1 * (pow(10, 7)))` | Finds corners in the image using the specified method |
+| `Image sift(double s=1.2, int gausSize = 15, double sigma = 1,int setSize=10, int window_Size=100)` | Applies SIFT feature extraction to the image |
+| `Image drawCirc(MyMatrix* maxSet,int setSize,int thickness,double radius, int factor=1.2)const` | Draws circles around the detected features in the image |
 
 
 ## :zap: Usage
