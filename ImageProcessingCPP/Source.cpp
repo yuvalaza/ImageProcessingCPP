@@ -18,7 +18,14 @@ void main()
 	try {
 		
 
-		//Image imag("Image7.jpg");
+		Image imag("Image5.png");
+		Image imag2=imag.equalize();
+		Image imag3 = imag.ContrastStretch();
+		imag3.showHist();
+		imag2.showHist();
+		imag.showHist();
+		imag2.display();
+
 		//Image imag3(imag.getGmat().getRows(), imag.getGmat().getCols());
 		//Image imag2 = imag.median(3);
 		/*Image imag2 = imag.corners(3);

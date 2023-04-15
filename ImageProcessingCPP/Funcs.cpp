@@ -16,26 +16,25 @@ MyMatrix initMask(string type,int size) {
 		return mask;
 	}
 
-	
 }
+
 MyMatrix setLaplac(int size) {
 	MyMatrix mask(size, size);
 	if (size == 3) {
 		mask = laplac3();
-
 	}
 	else {
 		mask = laplac5();
 	}
 	return mask;
 }
+
 MyMatrix laplac3() {
 	MyMatrix lap3(3, 3);
 	double rep3[3][3] = { {-1,-1,-1},{-1,8-1},{-1,-1,-1} };
 	for (int i = 0; i < 3; i++) {
 		for (int j = 0; j < 3; j++) {
 			lap3[i][j] = rep3[i][j];
-
 		}
 	}
 	return lap3;
@@ -47,7 +46,6 @@ MyMatrix laplac5() {
 	for (int i = 0; i < 5; i++) {
 		for (int j = 0; j < 5; j++) {
 			lap5[i][j] = rep5[i][j];
-
 		}
 	}
 	return lap5;
@@ -73,32 +71,31 @@ MyMatrix setSobel(string type,int size) {
 		}
 	}
 	
-	
-	
 	return sob;
 }
+
 MyMatrix Sobel3( ) {
 	MyMatrix sob3(3, 3);
 	double rep3[3][3] = { {-1,0,1},{-2,0,2},{-1,0,1} };
 	for (int i = 0; i < 3; i++) {
 		for (int j = 0; j < 3; j++) {
 			sob3[i][j] = rep3[i][j];
-
 		}
 	}
 	return sob3;
 }
+
 MyMatrix Sobel5() {
 	MyMatrix sob5(5,5);
 	double rep5[5][5] = { {-1,-2,0,2,1},{-2,-3,0,3,2},{-3,-5,0,5,3},{-2,-3,0,3,2},{-1,-2,0,2,1} };
 	for (int i = 0; i < 5; i++) {
 		for (int j = 0; j < 5; j++) {
 			sob5[i][j] = rep5[i][j];
-
 		}
 	}
 	return sob5;
 }
+
 MyMatrix SobelMag(MyMatrix input,int size) {
 	int rows= input.getRows();
 	int cols = input.getCols();
@@ -163,6 +160,7 @@ MyMatrix conv(const MyMatrix& matA, const MyMatrix& filter) {
 
 	return res;
 }
+
 void initGausSet(const MyMatrix& input, MyMatrix*& set, double s, int gausSize, double sigma, int setSize) {
 	double factor = 0;
 	if (setSize%2!=0) {
@@ -171,12 +169,9 @@ void initGausSet(const MyMatrix& input, MyMatrix*& set, double s, int gausSize, 
 
 	for (int i = 0; i < setSize; i++) {
 		factor = sigma * (pow(s, i));
-		set[i] = conv(input, setGaus(gausSize,factor));
-		
+		set[i] = conv(input, setGaus(gausSize,factor));		
 	}
-
 }
-
 
 MyMatrix getHaar(string type, int width,double W_L_ratio) {
 	int length = width * W_L_ratio;
@@ -197,6 +192,7 @@ MyMatrix getHaar(string type, int width,double W_L_ratio) {
 	}
 
 }
+
 static MyMatrix setVertHaar(int width,int length) {
 	MyMatrix res(length, width);
 	for (int i = 0; i < length; i++) {
@@ -211,6 +207,7 @@ static MyMatrix setVertHaar(int width,int length) {
 	}
 	return res;
 }
+
 static MyMatrix setHorizHaar(int width, int length) {
 	MyMatrix res(length, width);
 	for (int i = 0; i < length; i++) {
@@ -256,6 +253,7 @@ static MyMatrix setDoubHoizHaar(int width, int length) {
 	return res;
 
 }
+
 static MyMatrix setDoubVertHaar(int width, int length) {
 	MyMatrix res(length, width);
 	for (int i = 0; i < length; i++) {
@@ -270,13 +268,13 @@ static MyMatrix setDoubVertHaar(int width, int length) {
 	}
 	return res;
 }
+
 MyMatrix calcHaar(const MyMatrix& input,string type, int width, double W_L_ratio) {
 	int rows = input.getRows();
 	int cols = input.getCols();
 	MyMatrix res(rows, cols);
 	MyMatrix H(getHaar(type, width, W_L_ratio));
 	MyMatrix integral(input.integ());
-
 
 	return res;
 }

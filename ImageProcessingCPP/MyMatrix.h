@@ -41,7 +41,7 @@ public:
 	void sort();
 	void cvNorm();
 	Mat getCV_mat();
-	
+	void minMax(double factor=100);
 
 
 

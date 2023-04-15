@@ -62,7 +62,6 @@ for (int i = 0; i < this->_gmat.getRows(); i++) {
 		res_hist[0][temp] += 1;
 	}
 }
-//normalize_factor = double(temp_hist); //normalization by the histogram's sum
 return res_hist;
 }
 
@@ -103,15 +102,16 @@ void Image::save()const {
 }
 void Image::showHist()const {
 	double normalize_factor = 100;
+	int cols = this->_histogram.getCols();
 	String windowName;
 	float temp;
+	MyMatrix temp_hist = this->_histogram;
+	//normalize for better display
+	temp_hist.minMax();
 	vector<double>hist(256);
-	for (int i = 0; i < this->_histogram.getCols(); i++) {
-		hist[i] = this->_histogram[0][i];
-		hist[i] = hist[i] * (1 / normalize_factor);
+	for (int i = 0; i < cols; i++) {
+		hist[i] = temp_hist[0][i];
 	}
-
-
 
 	Mat3b image;
 	drawHist(hist, image);
@@ -265,20 +265,7 @@ Image Image:: gausBlur(const int size, double const sigma)const {
 	return res;
 
 }
-void Image::scale() {
-	int rows = this->getRows();
-	int cols = this->getCols();
-	double max_pixel = this->_gmat.max();
-	double min_pixel = this->_gmat.min();
-	cout << max_pixel << endl;
-	cout << min_pixel << endl;
 
-	for (int i = 0; i < rows; i++) {
-		for (int j = 0; j < cols; j++) {
-			this->_gmat[i][j] = (this->_gmat[i][j] - min_pixel) * 255 / (max_pixel - min_pixel);
-		}
-	}
-}
 
 Image Image::edgeDetect(const string& type, int size, double sigma)const {
 	//for set the new image path

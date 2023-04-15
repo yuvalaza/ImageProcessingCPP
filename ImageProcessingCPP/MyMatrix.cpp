@@ -77,6 +77,7 @@ MyMatrix MyMatrix::T()const {
 	}
 	return transpose_mat;
 }
+
 double MyMatrix ::max()const {
 	int rows = this->getRows();
 	int cols = this->getCols();
@@ -93,6 +94,7 @@ double MyMatrix ::max()const {
 
 
 }
+
 double MyMatrix::min()const {
 	int rows = this->getRows();
 	int cols = this->getCols();
@@ -107,6 +109,7 @@ double MyMatrix::min()const {
 	}
 	return min;
 }
+
 MyMatrix MyMatrix:: localMax(int window_Size)const {
 	if (window_Size > this->getRows() || window_Size > this->getCols()) {
 		throw ErrorObject(INVALID_WINDOW_SIZE_NUM, INVALID_WINDOW_SIZE, LINK1);
@@ -149,6 +152,7 @@ MyMatrix MyMatrix:: localMax(int window_Size)const {
 	cout << global_max << endl;
 	return res;
 }
+
 void MyMatrix:: clean_localMax(MyMatrix& res, double max, int window_Size, int indexX, int indexY,int rows,int cols)const {
 	if (indexX + window_Size <= rows && indexY + window_Size <= cols) {
 		for (int n = indexX; n < indexX + window_Size; n++) {
@@ -161,7 +165,6 @@ void MyMatrix:: clean_localMax(MyMatrix& res, double max, int window_Size, int i
 		}
 	}
 }
-
 
 MyMatrix MyMatrix::mul(const MyMatrix& other)const {
 	if (this->getCols() != other.getRows()) {
@@ -195,6 +198,7 @@ void MyMatrix::sort() {
 	}
 
 }
+
 void MyMatrix:: mergeSort(double* arr,int first, int last) {
 	if (first >= last) {
 		return;
@@ -204,6 +208,7 @@ void MyMatrix:: mergeSort(double* arr,int first, int last) {
 	mergeSort(arr, mid + 1, last);
 	merge(arr, first, mid, last);
 }
+
 void MyMatrix::merge(double* arr, int const left, int const mid, int const right) {
 	
 	double* larr = new double[mid - left + 1];
@@ -243,6 +248,7 @@ void MyMatrix::merge(double* arr, int const left, int const mid, int const right
 	delete[]larr;
 	delete[]rarr;
 }
+
 MyMatrix MyMatrix::abs()const {
 	int rows = this->getRows();
 	int cols = this->getCols();
@@ -258,6 +264,7 @@ MyMatrix MyMatrix::abs()const {
 	return res;
 
 }
+
 MyMatrix MyMatrix::integ()const {
 	int rows = this->getRows();
 	int cols = this->getCols();
@@ -285,7 +292,6 @@ MyMatrix MyMatrix::integ()const {
 	return res;
 
 }
-
 
 
 MyMatrix& MyMatrix::operator=(const MyMatrix& other) {
@@ -331,6 +337,7 @@ bool MyMatrix:: operator==(const MyMatrix& other) const {
 	return false;
 
 }
+
 istream& operator>>(istream& in, MyMatrix& other){
 	int rows;
 	int cols;
@@ -387,7 +394,7 @@ MyMatrix MyMatrix:: operator-(const MyMatrix& other) const {
 	}
 	return new_mat;
 
-	}
+}
 
  MyMatrix:: operator double() const {
 	 double sum = 0;
@@ -402,6 +409,7 @@ MyMatrix MyMatrix:: operator-(const MyMatrix& other) const {
 	 }
 	 return sum;
 }
+
  MyMatrix MyMatrix:: operator*(const MyMatrix& other) const {
 	 if (this->getCols() != other.getCols() || this->getRows() != other.getRows()) {
 		 throw ErrorObject(INVALID_MUL_NUM, INVALID_INMUL, LINK1);
@@ -416,12 +424,7 @@ MyMatrix MyMatrix:: operator-(const MyMatrix& other) const {
 
 	 }
 	 return result;
-	
 }
- 
-
-	 
-
  
  MyMatrix MyMatrix:: operator*(double num) const {
 	 double res = 0;
@@ -438,6 +441,7 @@ MyMatrix MyMatrix:: operator-(const MyMatrix& other) const {
 	 }
 	 return new_mat;
  }
+
  MyMatrix MyMatrix:: operator*(int num) const {
 	 double res = 0;
 	 MyMatrix new_mat(this->getRows(), this->getCols());
@@ -453,6 +457,7 @@ MyMatrix MyMatrix:: operator-(const MyMatrix& other) const {
 	 }
 	 return new_mat;
  }
+
  void MyMatrix::cvNorm() {
 	int rows = this->getRows();
 	int cols = this->getCols();
@@ -474,6 +479,7 @@ MyMatrix MyMatrix:: operator-(const MyMatrix& other) const {
 
 	}
  }
+
  Mat MyMatrix::getCV_mat() {
 	 int rows = this->getRows();
 	 int cols = this->getCols();
@@ -489,4 +495,16 @@ MyMatrix MyMatrix:: operator-(const MyMatrix& other) const {
  }
  
 	
+ void MyMatrix::minMax(double factor) {
+	 int rows = this->getRows();
+	 int cols = this->getCols();
+	 double max_pixel = this->max();
+	 double min_pixel = this->min();
+
+	 for (int i = 0; i < rows; i++) {
+		 for (int j = 0; j < cols; j++) {
+			 this->_matrix[i][j] = (this->_matrix[i][j] - min_pixel) *factor / (max_pixel - min_pixel);
+		 }
+	 }
+ }
  
