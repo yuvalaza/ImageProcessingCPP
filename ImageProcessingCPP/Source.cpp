@@ -4,33 +4,24 @@ using namespace std;
 
 void main() 
 {
-	//cout << setGaus(15,2.38) << endl;
-	/*Image imag9("image2.png");
-	(imag9).display();
-	(imag9.gausBlur(15, 5)).display();*/
-	//cout << getHaar("DoubleH", 6,0.5) << endl;
-	/*Image imag3("image2.png");
-	imag3.display();
-	imag3.gausBlur(1,7).display();
-	*/
-	
+	//Some Examples:
 
 	try {
-		
-
-		Image imag("Image5.png");
-		Image imag2=imag.equalize();
-		Image imag3 = imag.ContrastStretch();
-		imag3.showHist();
-		imag2.showHist();
+		/*Image imag("Image2.png");
+		imag.display();
 		imag.showHist();
-		imag2.display();
-
+		Image imag_con = imag.ContrastStretch();
+		imag_con.showHist();
+		imag_con.display();*/
+		
 		//Image imag3(imag.getGmat().getRows(), imag.getGmat().getCols());
+
 		//Image imag2 = imag.median(3);
+
 		/*Image imag2 = imag.corners(3);
 		imag2.display();
 		imag2.save();*/
+
 		/*Image imagX = imag.edgeDetect("sobelX");
 		imagX.display();
 		imagX.save();
@@ -72,8 +63,5 @@ void main()
 
 	}
 
-
-	
-		
 	}
 

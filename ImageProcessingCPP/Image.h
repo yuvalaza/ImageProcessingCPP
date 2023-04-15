@@ -24,7 +24,6 @@ public:
 	void setGmat(int rows, int cols);
 	void setGmat(const MyMatrix& other);
 	void setHist();
-	void scale();
 	int getRows()const { return this->_gmat.getRows(); }
 	int getCols()const { return this->_gmat.getCols(); }
 	MyMatrix getHist()const { return this->_histogram; }

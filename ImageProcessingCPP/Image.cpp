@@ -36,15 +36,18 @@ Image ::Image(const MyMatrix& other, string path) {
 void Image::setGmat(int rows,int cols) {
 	this->_gmat.setMatrix(rows, cols);
 }
+
 void Image::setGmat(const MyMatrix& other) {
 	this->_gmat = other;
 	//this->calHist();
 }
+
 void Image:: set_out_Path(string type,string input) {
 	int pos = input.find('.');
 	this->setPath(input.substr(0, pos) +"-"+type+ "." + input.substr(pos + 1));
 
 }
+
 void Image::setHist() {
 	if (this->_path == "None") {
 		this->_histogram.setMatrix(1, 256);
@@ -53,7 +56,6 @@ void Image::setHist() {
 }
 
 MyMatrix Image::calHist() const{
-
 MyMatrix res_hist(1, 256);
 int temp;
 for (int i = 0; i < this->_gmat.getRows(); i++) {
@@ -83,6 +85,7 @@ void Image::display()const {
 	waitKey(0);
 	destroyWindow(windowName);
 }
+
 void Image::save()const {
 	Mat new_image=this->getGmat().getCV_mat();
 	new_image.convertTo(new_image, CV_32F);
@@ -132,9 +135,7 @@ void Image::drawHist(const vector<double>& data, Mat3b& dst, int binSize, int he
 	}
 
 	cols = data.size() * binSize;
-
 	dst = Mat3b(rows, cols, Vec3b(0, 0, 0));
-
 	for (int i = 0; i < data.size(); ++i)
 	{
 		int h = rows - data[i];
@@ -193,6 +194,7 @@ Image Image::equalize()const {
 	MyMatrix pdf = (this->getHist()) * (1 / double(rows * cols));
 	MyMatrix cdf(1, cols);
 	cdf[0][0] = pdf[0][0];
+
 	for (int i = 1; i < cols; i++) {
 		cdf[0][i] = cdf[0][i - 1] + pdf[0][i];
 	}
@@ -202,13 +204,9 @@ Image Image::equalize()const {
 			equal._gmat[i][j] = (cdf[0][int(this->_gmat[i][j])] )* max;
 		}
 	}
-	cout << (cdf[0][int(this->_gmat[0][408])]) << endl;
-	cout << equal._gmat[0][408] << endl;
 	equal._histogram = equal.calHist();
 	equal.set_out_Path("Equalize", this->getPath());
 	return equal;
-
-
 }
 
 Image Image::median(const int size)const {
@@ -330,12 +328,13 @@ Image Image::corners(int size, double threshold_value) {
 			a = 0;
 			b = 0;
 			c = 0;
-			}
-		
 		}
+		
+	}
 	res.set_out_Path("Corners", this->getPath());
 	return res;
-	}
+}
+
 Image Image:: sift(double s, int gausSize, double sigma,int setSize,int window_Size) {
 	int count = 0;
 	int rows = this->getGmat().getRows();
@@ -378,7 +377,6 @@ Image Image::drawCirc(MyMatrix* maxSet,int setSize, int thickness, double radius
 		threshold = (temp.max())*0.7;
 		for (int i = 0; i < rows; i++) {
 			for (int j = 0; j < cols; j++) {
-				//cout << temp[i][j] << endl;
 				if (temp[i][j]>=threshold) {
 					Point center(i, j);
 					new_radius = pow(factor, count) * radius;
@@ -390,15 +388,10 @@ Image Image::drawCirc(MyMatrix* maxSet,int setSize, int thickness, double radius
 		}
 		count =count+ 2;
 	}
-	//res.convertTo(res, CV_8U);
-	
 	namedWindow(this->_path);
 	imshow(this->_path, res);
 	waitKey(0);
 	destroyWindow(this->_path);
 	
-	//MyMatrix final(res);
-	//final_image._gmat = final;
-
 	return final_image;
 }
